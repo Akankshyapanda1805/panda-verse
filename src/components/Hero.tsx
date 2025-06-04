@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { Download } from 'lucide-react';
+import { Download, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Hero: React.FC = () => {
@@ -8,6 +8,7 @@ const Hero: React.FC = () => {
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [resumeType, setResumeType] = useState<'ai-ml' | 'data-analyst'>('ai-ml');
+  const [showQuote, setShowQuote] = useState(true);
   
   const roles = [
     'AI/ML Engineer',
@@ -17,27 +18,23 @@ const Hero: React.FC = () => {
 
   // Enhanced typing effect
   useEffect(() => {
-    const typeSpeed = 150;
-    const deleteSpeed = 75;
+    const typeSpeed = 120;
+    const deleteSpeed = 80;
     const pauseTime = 2000;
 
     const currentText = roles[currentRole];
     
     const timeout = setTimeout(() => {
       if (!isDeleting) {
-        // Typing
         if (displayedText.length < currentText.length) {
           setDisplayedText(currentText.slice(0, displayedText.length + 1));
         } else {
-          // Finished typing, pause then start deleting
           setTimeout(() => setIsDeleting(true), pauseTime);
         }
       } else {
-        // Deleting
         if (displayedText.length > 0) {
           setDisplayedText(displayedText.slice(0, -1));
         } else {
-          // Finished deleting, move to next role
           setIsDeleting(false);
           setCurrentRole((prev) => (prev + 1) % roles.length);
         }
@@ -47,31 +44,77 @@ const Hero: React.FC = () => {
     return () => clearTimeout(timeout);
   }, [displayedText, isDeleting, currentRole, roles]);
 
-  return (
-    <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16 relative">
-      {/* Quote Section - Full Screen */}
-      <div className="absolute inset-0 flex items-center justify-center z-10">
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Quote - Prominently displayed */}
-          <div className="mb-16">
-            <blockquote className="text-2xl md:text-4xl lg:text-5xl text-gray-200 italic font-light leading-relaxed">
-              <span className="text-neon-cyan text-6xl">"</span>
-              Every data point tells a story, 
-              <br />
-              <span className="bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan bg-clip-text text-transparent font-semibold">
-                AI helps to write the next chapter.
-              </span>
-              <span className="text-neon-cyan text-6xl">"</span>
-            </blockquote>
-          </div>
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > window.innerHeight * 0.7) {
+        setShowQuote(false);
+      } else {
+        setShowQuote(true);
+      }
+    };
 
-          {/* Profile Picture */}
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <>
+      {/* Quote Section - Full Screen */}
+      <section 
+        id="quote" 
+        className={`min-h-screen flex items-center justify-center px-4 transition-opacity duration-1000 ${
+          showQuote ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
+        style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 5 }}
+      >
+        <div className="text-center max-w-5xl mx-auto">
+          <blockquote className="text-3xl md:text-5xl lg:text-6xl text-gray-100 leading-relaxed font-light">
+            <span className="text-neon-cyan text-7xl font-normal">"</span>
+            <span className="font-poppins">Every data point tells a story,</span>
+            <br />
+            <span className="bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan bg-clip-text text-transparent font-medium">
+              AI helps to write the next chapter.
+            </span>
+            <span className="text-neon-cyan text-7xl font-normal">"</span>
+          </blockquote>
+          
+          <div className="mt-16 animate-bounce">
+            <div className="w-6 h-10 border-2 border-neon-cyan rounded-full flex justify-center mx-auto">
+              <div className="w-1 h-3 bg-neon-cyan rounded-full mt-2 animate-pulse"></div>
+            </div>
+            <p className="text-gray-400 text-sm mt-2">Scroll to continue</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Main Hero Section */}
+      <section 
+        id="home" 
+        className="min-h-screen flex items-center justify-center px-4 pt-16 relative"
+        style={{ marginTop: '100vh' }}
+      >
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Profile Picture with Dev Logo */}
           <div className="mb-8 flex justify-center">
             <div className="relative">
-              <div className="w-48 h-48 md:w-64 md:h-64 rounded-full gradient-border animate-pulse-glow">
-                <div className="w-full h-full rounded-full bg-gradient-to-br from-neon-purple to-neon-cyan flex items-center justify-center">
+              <div className="w-48 h-48 md:w-64 md:h-64 rounded-2xl gradient-border animate-pulse-glow overflow-hidden">
+                <img 
+                  src="https://i.ibb.co/bRW6fkT/image.jpg" 
+                  alt="Akankshya Panda"
+                  className="w-full h-full object-cover rounded-xl"
+                  onError={(e) => {
+                    // Fallback if image fails to load
+                    e.currentTarget.style.display = 'none';
+                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                  }}
+                />
+                <div className="w-full h-full rounded-xl bg-gradient-to-br from-neon-purple to-neon-cyan flex items-center justify-center hidden">
                   <span className="text-6xl md:text-8xl font-bold text-white">AP</span>
                 </div>
+              </div>
+              {/* Dev Logo on top */}
+              <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-neon-pink to-neon-purple rounded-full flex items-center justify-center border-4 border-black">
+                <Code className="w-6 h-6 text-white" />
               </div>
             </div>
           </div>
@@ -85,10 +128,10 @@ const Hero: React.FC = () => {
 
           {/* Enhanced Animated Roles with Typing Effect */}
           <div className="mb-8 h-16 flex items-center justify-center">
-            <span className="text-2xl md:text-3xl text-gray-300 mr-4">I'm a</span>
-            <div className="text-2xl md:text-3xl font-semibold text-neon-cyan min-w-[350px] text-left relative">
+            <span className="text-xl md:text-2xl text-gray-300 mr-4">I'm a</span>
+            <div className="text-xl md:text-2xl font-semibold text-neon-cyan min-w-[280px] md:min-w-[350px] text-left relative">
               <span className="typewriter-text">{displayedText}</span>
-              <span className="inline-block w-0.5 h-8 bg-neon-cyan ml-1 animate-pulse"></span>
+              <span className="inline-block w-0.5 h-6 md:h-8 bg-neon-cyan ml-1 animate-blink"></span>
             </div>
           </div>
 
@@ -98,7 +141,7 @@ const Hero: React.FC = () => {
               <div className="relative bg-gray-800 rounded-full p-1 flex">
                 <button
                   onClick={() => setResumeType('ai-ml')}
-                  className={`px-6 py-3 rounded-full transition-all duration-300 ${
+                  className={`px-4 md:px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base ${
                     resumeType === 'ai-ml' 
                       ? 'bg-gradient-to-r from-neon-purple to-neon-blue text-white shadow-lg neon-glow' 
                       : 'text-gray-400 hover:text-white'
@@ -108,7 +151,7 @@ const Hero: React.FC = () => {
                 </button>
                 <button
                   onClick={() => setResumeType('data-analyst')}
-                  className={`px-6 py-3 rounded-full transition-all duration-300 ${
+                  className={`px-4 md:px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base ${
                     resumeType === 'data-analyst' 
                       ? 'bg-gradient-to-r from-neon-purple to-neon-blue text-white shadow-lg neon-glow' 
                       : 'text-gray-400 hover:text-white'
@@ -129,16 +172,9 @@ const Hero: React.FC = () => {
               </Button>
             </div>
           </div>
-
-          {/* Scroll Indicator */}
-          <div className="animate-bounce">
-            <div className="w-6 h-10 border-2 border-neon-cyan rounded-full flex justify-center">
-              <div className="w-1 h-3 bg-neon-cyan rounded-full mt-2 animate-pulse"></div>
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 };
 

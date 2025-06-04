@@ -1,35 +1,29 @@
 
 import React from 'react';
-import { GraduationCap, Award, Calendar } from 'lucide-react';
+import { GraduationCap, Award, Calendar, BookOpen } from 'lucide-react';
 
 const Education: React.FC = () => {
   const educationData = [
     {
       institution: "SRM Institute of Science and Technology",
-      location: "Chennai",
-      degree: "Integrated B.Tech + M.Tech in Cognitive Computing",
+      location: "Chennai, Tamil Nadu",
+      degree: "Bachelor of Technology + Master of Technology (Integrated)",
+      specialization: "Computer Science and Technology, Specialization in Cognitive Computing",
+      coursework: "Data Analysis, Software Engineering, Operating Systems, Data Structure and Algorithms, Artificial Intelligence, Machine Learning, Natural Language Processing, Computer Networks, Object Oriented Programming, Database Management Systems",
       gpa: "9.56",
-      period: "2022–2027",
+      period: "Expected May 2027",
       icon: GraduationCap,
       color: "from-neon-purple to-neon-blue"
     },
     {
       institution: "Kendriya Vidyalaya",
-      location: "Dhenkanal",
-      degree: "12th CBSE",
+      location: "Dhenkanal, Odisha",
+      degree: "Higher Secondary Education - Central Board of Secondary Education",
+      coursework: "Physics, Chemistry, Mathematics, Computer Science",
       gpa: "90.1%",
-      period: "2021–2022",
+      period: "July 2021 - July 2022",
       icon: Award,
       color: "from-neon-cyan to-neon-green"
-    },
-    {
-      institution: "Kendriya Vidyalaya",
-      location: "Dhenkanal", 
-      degree: "10th CBSE",
-      gpa: "Outstanding",
-      period: "2019–2020",
-      icon: Award,
-      color: "from-neon-pink to-neon-purple"
     }
   ];
 
@@ -43,29 +37,43 @@ const Education: React.FC = () => {
         </h2>
 
         <div className="relative">
-          {/* Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-px h-full w-0.5 bg-gradient-to-b from-neon-pink via-neon-purple to-neon-cyan"></div>
+          {/* Enhanced Timeline Line */}
+          <div className="absolute left-1/2 transform -translate-x-px h-full w-1 bg-gradient-to-b from-neon-pink via-neon-purple to-neon-cyan opacity-60"></div>
 
           {educationData.map((edu, index) => (
-            <div key={index} className={`relative flex items-center mb-12 ${
+            <div key={index} className={`relative flex items-center mb-16 ${
               index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
             }`}>
-              {/* Timeline Dot */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 rounded-full bg-gradient-to-r from-neon-purple to-neon-cyan border-4 border-black z-10 animate-pulse-glow"></div>
+              {/* Glowing Timeline Dot */}
+              <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-r from-neon-purple to-neon-cyan border-4 border-black z-10 animate-pulse-glow shadow-lg shadow-neon-purple/50"></div>
 
               {/* Content Card */}
               <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
-                <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-neon-purple transition-all duration-300 transform hover:scale-105 neon-glow">
-                  <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r ${edu.color} mb-4`}>
-                    <edu.icon className="w-6 h-6 text-white" />
+                <div className="bg-gray-900/60 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-neon-purple transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 neon-glow group">
+                  <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r ${edu.color} mb-6 shadow-lg`}>
+                    <edu.icon className="w-8 h-8 text-white" />
                   </div>
                   
-                  <h3 className="text-xl font-bold text-white mb-2">{edu.institution}</h3>
-                  <p className="text-neon-cyan font-semibold mb-1">{edu.location}</p>
-                  <p className="text-gray-300 mb-2">{edu.degree}</p>
+                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">
+                    {edu.institution}
+                  </h3>
+                  <p className="text-neon-cyan font-semibold mb-3 text-lg">{edu.location}</p>
+                  <p className="text-gray-200 mb-2 font-medium">{edu.degree}</p>
+                  
+                  {edu.specialization && (
+                    <p className="text-gray-300 mb-3 italic">{edu.specialization}</p>
+                  )}
+                  
+                  <div className="flex items-start mb-4">
+                    <BookOpen className="w-4 h-4 text-neon-green mr-2 mt-1 flex-shrink-0" />
+                    <p className="text-gray-400 text-sm leading-relaxed">
+                      <span className="font-medium text-gray-300">Relevant Coursework: </span>
+                      {edu.coursework}
+                    </p>
+                  </div>
                   
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-neon-green font-semibold">GPA: {edu.gpa}</span>
+                    <span className="text-neon-green font-bold text-lg">CGPA: {edu.gpa}</span>
                     <div className="flex items-center text-gray-400">
                       <Calendar className="w-4 h-4 mr-1" />
                       {edu.period}
