@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -52,15 +53,12 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
-				sidebar: {
-					DEFAULT: 'hsl(var(--sidebar-background))',
-					foreground: 'hsl(var(--sidebar-foreground))',
-					primary: 'hsl(var(--sidebar-primary))',
-					'primary-foreground': 'hsl(var(--sidebar-primary-foreground))',
-					accent: 'hsl(var(--sidebar-accent))',
-					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
-					border: 'hsl(var(--sidebar-border))',
-					ring: 'hsl(var(--sidebar-ring))'
+				neon: {
+					pink: '#ff00ff',
+					cyan: '#00ffff',
+					purple: '#8b5cf6',
+					blue: '#3b82f6',
+					green: '#10b981'
 				}
 			},
 			borderRadius: {
@@ -84,11 +82,54 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0px)' },
+					'50%': { transform: 'translateY(-20px)' }
+				},
+				'pulse-glow': {
+					'0%, 100%': { 
+						boxShadow: '0 0 20px rgba(139, 92, 246, 0.5)',
+						transform: 'scale(1)'
+					},
+					'50%': { 
+						boxShadow: '0 0 40px rgba(139, 92, 246, 0.8)',
+						transform: 'scale(1.05)'
+					}
+				},
+				'typewriter': {
+					'0%': { width: '0' },
+					'100%': { width: '100%' }
+				},
+				'blink': {
+					'0%, 50%': { opacity: '1' },
+					'51%, 100%': { opacity: '0' }
+				},
+				'star-twinkle': {
+					'0%, 100%': { opacity: '0.3', transform: 'scale(1)' },
+					'50%': { opacity: '1', transform: 'scale(1.2)' }
+				},
+				'neon-border': {
+					'0%': { borderColor: '#ff00ff' },
+					'25%': { borderColor: '#00ffff' },
+					'50%': { borderColor: '#8b5cf6' },
+					'75%': { borderColor: '#3b82f6' },
+					'100%': { borderColor: '#ff00ff' }
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'float': 'float 6s ease-in-out infinite',
+				'pulse-glow': 'pulse-glow 2s ease-in-out infinite',
+				'typewriter': 'typewriter 3s steps(40) 1s infinite',
+				'blink': 'blink 1s infinite',
+				'star-twinkle': 'star-twinkle 2s ease-in-out infinite',
+				'neon-border': 'neon-border 4s linear infinite'
+			},
+			fontFamily: {
+				'orbitron': ['Orbitron', 'monospace'],
+				'poppins': ['Poppins', 'sans-serif']
 			}
 		}
 	},
