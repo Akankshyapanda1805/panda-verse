@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 const Hero: React.FC = () => {
   const [currentRole, setCurrentRole] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
-  const [isTyping, setIsTyping] = useState(true);
+  const [isDeleting, setIsDeleting] = useState(false);
   const [resumeType, setResumeType] = useState<'ai-ml' | 'data-analyst'>('ai-ml');
   
   const roles = [
@@ -15,44 +15,37 @@ const Hero: React.FC = () => {
     'Cognitive Computing Student'
   ];
 
-  // Typing effect
+  // Enhanced typing effect
   useEffect(() => {
-    const currentText = roles[currentRole];
-    let currentIndex = 0;
-    
-    if (isTyping) {
-      const typingInterval = setInterval(() => {
-        if (currentIndex <= currentText.length) {
-          setDisplayedText(currentText.slice(0, currentIndex));
-          currentIndex++;
-        } else {
-          setIsTyping(false);
-          clearInterval(typingInterval);
-          
-          // Wait before starting to delete
-          setTimeout(() => {
-            setIsTyping(false);
-            // Start deleting after 2 seconds
-            setTimeout(() => {
-              let deleteIndex = currentText.length;
-              const deleteInterval = setInterval(() => {
-                if (deleteIndex >= 0) {
-                  setDisplayedText(currentText.slice(0, deleteIndex));
-                  deleteIndex--;
-                } else {
-                  clearInterval(deleteInterval);
-                  setCurrentRole((prev) => (prev + 1) % roles.length);
-                  setIsTyping(true);
-                }
-              }, 50);
-            }, 1500);
-          }, 100);
-        }
-      }, 100);
+    const typeSpeed = 150;
+    const deleteSpeed = 75;
+    const pauseTime = 2000;
 
-      return () => clearInterval(typingInterval);
-    }
-  }, [currentRole, isTyping, roles]);
+    const currentText = roles[currentRole];
+    
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        // Typing
+        if (displayedText.length < currentText.length) {
+          setDisplayedText(currentText.slice(0, displayedText.length + 1));
+        } else {
+          // Finished typing, pause then start deleting
+          setTimeout(() => setIsDeleting(true), pauseTime);
+        }
+      } else {
+        // Deleting
+        if (displayedText.length > 0) {
+          setDisplayedText(displayedText.slice(0, -1));
+        } else {
+          // Finished deleting, move to next role
+          setIsDeleting(false);
+          setCurrentRole((prev) => (prev + 1) % roles.length);
+        }
+      }
+    }, isDeleting ? deleteSpeed : typeSpeed);
+
+    return () => clearTimeout(timeout);
+  }, [displayedText, isDeleting, currentRole, roles]);
 
   return (
     <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16 relative">
@@ -62,13 +55,13 @@ const Hero: React.FC = () => {
           {/* Quote - Prominently displayed */}
           <div className="mb-16">
             <blockquote className="text-2xl md:text-4xl lg:text-5xl text-gray-200 italic font-light leading-relaxed">
-              <span className="text-neon-cyan">"</span>
+              <span className="text-neon-cyan text-6xl">"</span>
               Every data point tells a story, 
               <br />
               <span className="bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan bg-clip-text text-transparent font-semibold">
                 AI helps to write the next chapter.
               </span>
-              <span className="text-neon-cyan">"</span>
+              <span className="text-neon-cyan text-6xl">"</span>
             </blockquote>
           </div>
 
@@ -90,12 +83,12 @@ const Hero: React.FC = () => {
             </span>
           </h1>
 
-          {/* Animated Roles with Typing Effect */}
+          {/* Enhanced Animated Roles with Typing Effect */}
           <div className="mb-8 h-16 flex items-center justify-center">
             <span className="text-2xl md:text-3xl text-gray-300 mr-4">I'm a</span>
             <div className="text-2xl md:text-3xl font-semibold text-neon-cyan min-w-[350px] text-left relative">
-              {displayedText}
-              <span className="inline-block w-0.5 h-8 bg-neon-cyan ml-1 animate-blink"></span>
+              <span className="typewriter-text">{displayedText}</span>
+              <span className="inline-block w-0.5 h-8 bg-neon-cyan ml-1 animate-pulse"></span>
             </div>
           </div>
 
