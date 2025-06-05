@@ -1,74 +1,83 @@
 
 import React from 'react';
-import { Briefcase, MapPin, Calendar, TrendingUp } from 'lucide-react';
+import { Calendar, MapPin, Briefcase } from 'lucide-react';
 
 const Experience: React.FC = () => {
   const experiences = [
     {
-      company: "Toniq Retail Brand Pvt. Ltd.",
-      role: "Data Analytics Intern",
-      location: "Remote",
-      period: "Apr 2025 – Present",
-      achievements: [
-        "Cleaned and structured large datasets",
-        "Built Power BI dashboards",
-        "Identified retail trends & improved efficiency by 35%"
+      title: 'Data Analytics Intern',
+      company: 'Toniq Retail Brand Pvt. Ltd.',
+      location: 'Remote',
+      period: 'Apr 2025 – Present',
+      description: [
+        'Cleaned and structured large datasets',
+        'Built Power BI dashboards',
+        'Identified retail trends & improved efficiency by 35%'
       ],
-      color: "from-neon-pink to-neon-purple"
+      color: 'from-neon-pink to-neon-purple'
     },
     {
-      company: "Microsoft AICTE Virtual Internship",
-      role: "AI Intern", 
-      location: "Remote",
-      period: "Jun 2024 – Jul 2024",
-      achievements: [
-        "Developed analytics platform on Azure",
-        "Built ETL pipelines",
-        "Enhanced data processing by 40%"
+      title: 'AI Intern',
+      company: 'Microsoft AICTE Virtual Internship',
+      location: 'Remote',
+      period: 'Jun 2024 – Jul 2024',
+      description: [
+        'Developed analytics platform on Azure',
+        'Built ETL pipelines',
+        'Enhanced data processing by 40%'
       ],
-      color: "from-neon-cyan to-neon-blue"
+      color: 'from-neon-blue to-neon-cyan'
     }
   ];
 
   return (
-    <section id="experience" className="py-20 px-4 bg-gray-900/20">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold font-orbitron text-center mb-16">
-          <span className="bg-gradient-to-r from-neon-cyan to-neon-purple bg-clip-text text-transparent">
-            Experience
+    <section id="experience" className="py-20 px-4">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 font-playfair">
+          <span className="bg-gradient-to-r from-neon-green via-neon-cyan to-neon-blue bg-clip-text text-transparent">
+            Work Experience
           </span>
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="space-y-8">
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-neon-cyan transition-all duration-300 transform hover:scale-105 neon-glow group"
+              className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-neon-cyan/50 transition-all duration-300 group"
             >
-              <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r ${exp.color} mb-4`}>
-                <Briefcase className="w-6 h-6 text-white" />
+              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
+                <div className="flex-1">
+                  <div className="flex items-center mb-2">
+                    <div className={`p-2 rounded-lg bg-gradient-to-r ${exp.color} mr-3`}>
+                      <Briefcase className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold text-white font-montserrat">
+                      {exp.title}
+                    </h3>
+                  </div>
+                  
+                  <h4 className="text-xl text-neon-cyan font-semibold mb-2 font-montserrat">
+                    {exp.company}
+                  </h4>
+                  
+                  <div className="flex flex-col sm:flex-row sm:items-center text-gray-400 text-sm space-y-1 sm:space-y-0 sm:space-x-4 font-poppins">
+                    <div className="flex items-center">
+                      <Calendar className="w-4 h-4 mr-2" />
+                      {exp.period}
+                    </div>
+                    <div className="flex items-center">
+                      <MapPin className="w-4 h-4 mr-2" />
+                      {exp.location}
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <h3 className="text-xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">
-                {exp.role}
-              </h3>
-              
-              <h4 className="text-lg text-neon-purple font-semibold mb-3">
-                {exp.company}
-              </h4>
-
-              <div className="flex items-center text-gray-400 text-sm mb-2">
-                <MapPin className="w-4 h-4 mr-2" />
-                <span className="mr-4">{exp.location}</span>
-                <Calendar className="w-4 h-4 mr-2" />
-                <span>{exp.period}</span>
-              </div>
-
-              <div className="space-y-2">
-                {exp.achievements.map((achievement, i) => (
-                  <div key={i} className="flex items-start">
-                    <TrendingUp className="w-4 h-4 text-neon-green mr-2 mt-0.5 flex-shrink-0" />
-                    <span className="text-gray-300 text-sm">{achievement}</span>
+              <div className="space-y-3">
+                {exp.description.map((desc, descIndex) => (
+                  <div key={descIndex} className="flex items-start">
+                    <div className="w-2 h-2 bg-neon-cyan rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                    <p className="text-gray-300 leading-relaxed font-poppins">{desc}</p>
                   </div>
                 ))}
               </div>

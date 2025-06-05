@@ -7,9 +7,10 @@ const Hero: React.FC = () => {
   const [currentRole, setCurrentRole] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
-  const [resumeType, setResumeType] = useState<'ai-ml' | 'data-analyst'>('ai-ml');
   const [showQuote, setShowQuote] = useState(true);
-  const [quoteText, setQuoteText] = useState('');
+  const [quoteText1, setQuoteText1] = useState('');
+  const [quoteText2, setQuoteText2] = useState('');
+  const [showSecondLine, setShowSecondLine] = useState(false);
   const [showBinaryTransition, setShowBinaryTransition] = useState(false);
   
   const roles = [
@@ -18,21 +19,41 @@ const Hero: React.FC = () => {
     'Cognitive Computing Student'
   ];
 
-  const fullQuote = "Every data point tells a story, AI helps to write the next chapter.";
+  const firstLine = "Every data point tells a story,";
+  const secondLine = "AI helps to write the next chapter.";
 
-  // Quote typing effect
+  // Quote typing effect with auto-transition
   useEffect(() => {
     if (showQuote) {
-      let index = 0;
-      const timer = setInterval(() => {
-        if (index < fullQuote.length) {
-          setQuoteText(fullQuote.slice(0, index + 1));
-          index++;
+      let index1 = 0;
+      const timer1 = setInterval(() => {
+        if (index1 < firstLine.length) {
+          setQuoteText1(firstLine.slice(0, index1 + 1));
+          index1++;
         } else {
-          clearInterval(timer);
+          clearInterval(timer1);
+          setShowSecondLine(true);
+          
+          let index2 = 0;
+          const timer2 = setInterval(() => {
+            if (index2 < secondLine.length) {
+              setQuoteText2(secondLine.slice(0, index2 + 1));
+              index2++;
+            } else {
+              clearInterval(timer2);
+              // Auto-transition after 5 seconds
+              setTimeout(() => {
+                setShowBinaryTransition(true);
+                setTimeout(() => {
+                  setShowQuote(false);
+                  setShowBinaryTransition(false);
+                }, 1000);
+              }, 5000);
+            }
+          }, 80);
         }
       }, 80);
-      return () => clearInterval(timer);
+      return () => clearInterval(timer1);
     }
   }, [showQuote]);
 
@@ -64,25 +85,6 @@ const Hero: React.FC = () => {
     return () => clearTimeout(timeout);
   }, [displayedText, isDeleting, currentRole, roles]);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > window.innerHeight * 0.7) {
-        if (showQuote) {
-          setShowBinaryTransition(true);
-          setTimeout(() => {
-            setShowQuote(false);
-            setShowBinaryTransition(false);
-          }, 1000);
-        }
-      } else {
-        setShowQuote(true);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, [showQuote]);
-
   return (
     <>
       {/* Quote Section - Full Screen */}
@@ -94,15 +96,17 @@ const Hero: React.FC = () => {
         style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 5 }}
       >
         <div className="text-center max-w-5xl mx-auto">
-          <blockquote className="text-4xl md:text-6xl lg:text-7xl leading-relaxed font-playfair">
-            <div className="mb-8">
-              <span className="text-gray-100">Every data point tells a story,</span>
+          <blockquote className="text-3xl md:text-5xl lg:text-6xl leading-relaxed font-playfair">
+            <div className="mb-6">
+              <span className="text-gray-100">{quoteText1}</span>
             </div>
-            <div>
-              <span className="bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan bg-clip-text text-transparent font-medium">
-                AI helps to write the next chapter.
-              </span>
-            </div>
+            {showSecondLine && (
+              <div>
+                <span className="bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan bg-clip-text text-transparent font-medium">
+                  {quoteText2}
+                </span>
+              </div>
+            )}
           </blockquote>
           
           {/* Binary numbers falling effect */}
@@ -129,16 +133,16 @@ const Hero: React.FC = () => {
       <section 
         id="home" 
         className="min-h-screen flex items-center justify-center px-4 pt-16 relative"
-        style={{ marginTop: '100vh' }}
+        style={{ marginTop: showQuote ? '100vh' : '0', transition: 'margin-top 1s ease-in-out' }}
       >
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
+        <div className="max-w-7xl mx-auto w-full">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
             {/* Profile Picture - Left Side */}
-            <div className="flex justify-center lg:justify-start">
+            <div className="flex justify-center lg:justify-start flex-shrink-0">
               <div className="relative">
-                <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl gradient-border animate-pulse-glow overflow-hidden">
+                <div className="w-56 h-56 md:w-64 md:h-64 rounded-2xl gradient-border animate-pulse-glow overflow-hidden">
                   <img 
-                    src="https://i.ibb.co/bRW6fkT/image.jpg" 
+                    src="https://drive.google.com/uc?export=view&id=10YacXD6vPQWvq_beECg5cv5yeirFs1l3" 
                     alt="Akankshya Panda"
                     className="w-full h-full object-cover rounded-xl"
                     onError={(e) => {
@@ -158,66 +162,39 @@ const Hero: React.FC = () => {
             </div>
 
             {/* Content - Right Side */}
-            <div className="flex-1 text-center lg:text-left">
+            <div className="flex-1 text-center lg:text-left lg:pl-8">
               {/* Name */}
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-georgia mb-6">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-georgia mb-4">
                 <span className="bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan bg-clip-text text-transparent">
                   Akankshya Panda
                 </span>
               </h1>
 
               {/* Animated Roles with Typing Effect */}
-              <div className="mb-8 h-16 flex items-center justify-center lg:justify-start">
-                <span className="text-xl md:text-2xl text-gray-300 mr-4 font-montserrat">I'm a</span>
-                <div className="text-xl md:text-2xl font-semibold text-neon-cyan min-w-[280px] md:min-w-[350px] text-left relative">
+              <div className="mb-6 h-12 flex items-center justify-center lg:justify-start">
+                <span className="text-lg md:text-xl text-gray-300 mr-3 font-montserrat">I'm a</span>
+                <div className="text-lg md:text-xl font-semibold text-neon-cyan min-w-[250px] md:min-w-[300px] text-left relative">
                   <span className="typewriter-text">{displayedText}</span>
-                  <span className="inline-block w-0.5 h-6 md:h-8 bg-neon-cyan ml-1 animate-blink"></span>
+                  <span className="inline-block w-0.5 h-5 md:h-6 bg-neon-cyan ml-1 animate-blink"></span>
                 </div>
               </div>
 
               {/* Description */}
-              <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed font-montserrat max-w-3xl">
+              <p className="text-sm md:text-base text-gray-300 mb-8 leading-relaxed font-montserrat max-w-3xl text-justify">
                 Turning data into intuition and algorithms into action, I build systems that learn, adapt, and evolve. 
                 Where others see patterns, I see potential — the spark for something smarter. Code is my canvas, intelligence my medium. 
                 I don't just develop solutions; I train them to think.
               </p>
 
-              {/* Resume Toggle */}
-              <div className="mb-12">
-                <div className="flex items-center justify-center lg:justify-start mb-6">
-                  <div className="relative bg-gray-800 rounded-full p-1 flex">
-                    <button
-                      onClick={() => setResumeType('ai-ml')}
-                      className={`px-4 md:px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base ${
-                        resumeType === 'ai-ml' 
-                          ? 'bg-gradient-to-r from-neon-purple to-neon-blue text-white shadow-lg neon-glow' 
-                          : 'text-gray-400 hover:text-white'
-                      }`}
-                    >
-                      AI/ML Resume
-                    </button>
-                    <button
-                      onClick={() => setResumeType('data-analyst')}
-                      className={`px-4 md:px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base ${
-                        resumeType === 'data-analyst' 
-                          ? 'bg-gradient-to-r from-neon-purple to-neon-blue text-white shadow-lg neon-glow' 
-                          : 'text-gray-400 hover:text-white'
-                      }`}
-                    >
-                      Data Analyst Resume
-                    </button>
-                  </div>
-                </div>
-
-                {/* Download Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                  <Button
-                    className="bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-purple hover:to-neon-blue transition-all duration-300 text-white font-semibold py-3 px-6 rounded-lg neon-glow transform hover:scale-105"
-                  >
-                    <Download className="w-5 h-5 mr-2" />
-                    Download {resumeType === 'ai-ml' ? 'AI/ML' : 'Data Analyst'} Resume
-                  </Button>
-                </div>
+              {/* Download Button */}
+              <div className="flex justify-center lg:justify-start">
+                <Button
+                  className="bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-purple hover:to-neon-blue transition-all duration-300 text-white font-semibold py-3 px-6 rounded-lg neon-glow transform hover:scale-105"
+                  onClick={() => window.open('https://drive.google.com/file/d/1w6A8HCYfBbMMedXZMfaETk5boUgijRpg/view?usp=sharing', '_blank')}
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  Download Resume
+                </Button>
               </div>
             </div>
           </div>

@@ -1,67 +1,94 @@
 
 import React from 'react';
-import { Trophy, Globe, Star } from 'lucide-react';
+import { Trophy, Globe, Award, Star } from 'lucide-react';
 
 const SecretStash: React.FC = () => {
   const achievements = [
-    "TCS CodeVita Finalist",
-    "Commended for Fault Detection AI System"
+    {
+      title: 'Finalist, TCS CodeVita Season 11',
+      description: 'Ranked among top performers in AI problem-solving round',
+      icon: <Trophy className="w-6 h-6" />,
+      color: 'from-neon-pink to-neon-purple'
+    },
+    {
+      title: 'Awards & Recognition',
+      description: 'Received commendation for AI project in Smart Fault Detection System',
+      icon: <Award className="w-6 h-6" />,
+      color: 'from-neon-purple to-neon-blue'
+    }
   ];
 
   const languages = [
-    { name: "English", level: "Native" },
-    { name: "Hindi", level: "Fluent" },
-    { name: "Odia", level: "Native" },
-    { name: "German", level: "Beginner" }
+    { name: 'English', level: 'Fluent' },
+    { name: 'Hindi', level: 'Native' },
+    { name: 'Odia', level: 'Native' },
+    { name: 'German', level: 'Basic' }
   ];
 
   return (
-    <section id="secret-stash" className="py-20 px-4 bg-gray-900/20">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold font-orbitron text-center mb-16">
-          <span className="bg-gradient-to-r from-neon-pink to-neon-green bg-clip-text text-transparent">
+    <section id="secret-stash" className="py-20 px-4">
+      <div className="max-w-7xl mx-auto">
+        <h2 className="text-4xl md:text-5xl font-bold text-center mb-16 font-playfair">
+          <span className="bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan bg-clip-text text-transparent">
             Secret Stash
           </span>
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Achievements */}
-          <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700 hover:border-neon-pink transition-all duration-300 neon-glow">
-            <div className="flex items-center mb-6">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-neon-pink to-neon-purple mr-4">
-                <Trophy className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-white">Achievements</h3>
-            </div>
-
-            <div className="space-y-4">
+          <div>
+            <h3 className="text-2xl font-bold text-white mb-8 flex items-center font-montserrat">
+              <Trophy className="w-7 h-7 mr-3 text-neon-pink" />
+              Achievements
+            </h3>
+            
+            <div className="space-y-6">
               {achievements.map((achievement, index) => (
-                <div key={index} className="flex items-start">
-                  <Star className="w-5 h-5 text-neon-pink mr-3 mt-0.5 flex-shrink-0" />
-                  <span className="text-gray-300">{achievement}</span>
+                <div
+                  key={index}
+                  className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-neon-purple/50 transition-all duration-300 group"
+                >
+                  <div className="flex items-start space-x-4">
+                    <div className={`p-3 rounded-lg bg-gradient-to-r ${achievement.color} flex-shrink-0`}>
+                      {achievement.icon}
+                    </div>
+                    <div>
+                      <h4 className="text-lg font-semibold text-white mb-2 font-montserrat">
+                        {achievement.title}
+                      </h4>
+                      <p className="text-gray-300 leading-relaxed font-poppins">
+                        {achievement.description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ))}
             </div>
           </div>
 
           {/* Languages */}
-          <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700 hover:border-neon-cyan transition-all duration-300 neon-glow">
-            <div className="flex items-center mb-6">
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r from-neon-cyan to-neon-green mr-4">
-                <Globe className="w-6 h-6 text-white" />
+          <div>
+            <h3 className="text-2xl font-bold text-white mb-8 flex items-center font-montserrat">
+              <Globe className="w-7 h-7 mr-3 text-neon-cyan" />
+              Languages
+            </h3>
+            
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
+              <div className="space-y-6">
+                {languages.map((language, index) => (
+                  <div key={index} className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <Star className="w-5 h-5 text-neon-green" />
+                      <span className="text-white font-semibold font-montserrat">
+                        {language.name}
+                      </span>
+                    </div>
+                    <span className="text-gray-400 text-sm font-poppins">
+                      {language.level}
+                    </span>
+                  </div>
+                ))}
               </div>
-              <h3 className="text-2xl font-bold text-white">Languages</h3>
-            </div>
-
-            <div className="space-y-4">
-              {languages.map((language, index) => (
-                <div key={index} className="flex items-center justify-between">
-                  <span className="text-gray-300 font-medium">{language.name}</span>
-                  <span className="text-neon-cyan text-sm px-3 py-1 bg-gray-800 rounded-full border border-gray-600">
-                    {language.level}
-                  </span>
-                </div>
-              ))}
             </div>
           </div>
         </div>
