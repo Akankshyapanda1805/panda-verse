@@ -93,13 +93,13 @@ const Certifications: React.FC = () => {
   return (
     <section id="certifications" className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold font-orbitron text-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-bold font-playfair text-center mb-16">
           <span className="bg-gradient-to-r from-neon-cyan to-neon-green bg-clip-text text-transparent">
             Certifications
           </span>
         </h2>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {certifications.map((cert, index) => (
             <div
               key={index}
@@ -111,7 +111,6 @@ const Certifications: React.FC = () => {
                   alt={cert.name}
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                   onError={(e) => {
-                    // Fallback to icon if image fails to load
                     e.currentTarget.style.display = 'none';
                     e.currentTarget.nextElementSibling?.classList.remove('hidden');
                   }}
@@ -121,19 +120,19 @@ const Certifications: React.FC = () => {
                 </div>
               </div>
 
-              <h3 className="text-lg font-bold text-white mb-2 group-hover:text-neon-green transition-colors leading-tight">
+              <h3 className="text-lg font-bold text-white mb-2 group-hover:text-neon-green transition-colors leading-tight font-playfair">
                 {cert.name}
               </h3>
 
-              <p className="text-neon-cyan font-semibold mb-3">{cert.provider}</p>
+              <p className="text-neon-cyan font-semibold mb-3 font-montserrat">{cert.provider}</p>
 
               <div className="flex items-center justify-between">
-                <div className="flex items-center text-gray-400 text-sm">
+                <div className="flex items-center text-gray-400 text-sm font-montserrat">
                   <Calendar className="w-4 h-4 mr-2" />
                   <span>{cert.date}</span>
                 </div>
                 
-                <button className="flex items-center text-gray-400 hover:text-neon-green transition-colors text-sm">
+                <button className="flex items-center text-gray-400 hover:text-neon-green transition-colors text-sm font-montserrat">
                   <ExternalLink className="w-4 h-4 mr-1" />
                   View
                 </button>

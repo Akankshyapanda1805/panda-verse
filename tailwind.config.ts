@@ -129,7 +129,10 @@ export default {
 			},
 			fontFamily: {
 				'orbitron': ['Orbitron', 'monospace'],
-				'poppins': ['Poppins', 'sans-serif']
+				'poppins': ['Poppins', 'sans-serif'],
+				'montserrat': ['Montserrat', 'sans-serif'],
+				'playfair': ['Playfair Display', 'serif'],
+				'georgia': ['Georgia', 'serif']
 			}
 		}
 	},

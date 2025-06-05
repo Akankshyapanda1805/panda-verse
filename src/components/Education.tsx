@@ -30,51 +30,49 @@ const Education: React.FC = () => {
   return (
     <section id="education" className="py-20 px-4">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl md:text-5xl font-bold font-orbitron text-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-bold font-playfair text-center mb-16">
           <span className="bg-gradient-to-r from-neon-pink to-neon-cyan bg-clip-text text-transparent">
             Education
           </span>
         </h2>
 
         <div className="relative">
-          {/* Enhanced Timeline Line */}
-          <div className="absolute left-1/2 transform -translate-x-px h-full w-1 bg-gradient-to-b from-neon-pink via-neon-purple to-neon-cyan opacity-60"></div>
+          {/* Timeline Line - Fixed on Left */}
+          <div className="absolute left-8 top-0 bottom-0 w-1 bg-gradient-to-b from-neon-pink via-neon-purple to-neon-cyan opacity-60"></div>
 
           {educationData.map((edu, index) => (
-            <div key={index} className={`relative flex items-center mb-16 ${
-              index % 2 === 0 ? 'flex-row' : 'flex-row-reverse'
-            }`}>
-              {/* Glowing Timeline Dot */}
-              <div className="absolute left-1/2 transform -translate-x-1/2 w-8 h-8 rounded-full bg-gradient-to-r from-neon-purple to-neon-cyan border-4 border-black z-10 animate-pulse-glow shadow-lg shadow-neon-purple/50"></div>
+            <div key={index} className="relative flex items-start mb-16">
+              {/* Timeline Dot - Left Side */}
+              <div className="absolute left-4 w-8 h-8 rounded-full bg-gradient-to-r from-neon-purple to-neon-cyan border-4 border-black z-10 animate-pulse-glow shadow-lg shadow-neon-purple/50"></div>
 
-              {/* Content Card */}
-              <div className={`w-5/12 ${index % 2 === 0 ? 'pr-8 text-right' : 'pl-8 text-left'}`}>
+              {/* Content Card - Right Side */}
+              <div className="ml-20 w-full">
                 <div className="bg-gray-900/60 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-neon-purple transition-all duration-500 transform hover:scale-105 hover:-translate-y-2 neon-glow group">
                   <div className={`inline-flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r ${edu.color} mb-6 shadow-lg`}>
                     <edu.icon className="w-8 h-8 text-white" />
                   </div>
                   
-                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors">
+                  <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-neon-cyan transition-colors font-playfair">
                     {edu.institution}
                   </h3>
-                  <p className="text-neon-cyan font-semibold mb-3 text-lg">{edu.location}</p>
-                  <p className="text-gray-200 mb-2 font-medium">{edu.degree}</p>
+                  <p className="text-neon-cyan font-semibold mb-3 text-lg font-montserrat">{edu.location}</p>
+                  <p className="text-gray-200 mb-2 font-medium font-montserrat">{edu.degree}</p>
                   
                   {edu.specialization && (
-                    <p className="text-gray-300 mb-3 italic">{edu.specialization}</p>
+                    <p className="text-gray-300 mb-3 italic font-montserrat">{edu.specialization}</p>
                   )}
                   
                   <div className="flex items-start mb-4">
                     <BookOpen className="w-4 h-4 text-neon-green mr-2 mt-1 flex-shrink-0" />
-                    <p className="text-gray-400 text-sm leading-relaxed">
+                    <p className="text-gray-400 text-sm leading-relaxed font-montserrat">
                       <span className="font-medium text-gray-300">Relevant Coursework: </span>
                       {edu.coursework}
                     </p>
                   </div>
                   
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-neon-green font-bold text-lg">CGPA: {edu.gpa}</span>
-                    <div className="flex items-center text-gray-400">
+                    <span className="text-neon-green font-bold text-lg font-montserrat">CGPA: {edu.gpa}</span>
+                    <div className="flex items-center text-gray-400 font-montserrat">
                       <Calendar className="w-4 h-4 mr-1" />
                       {edu.period}
                     </div>

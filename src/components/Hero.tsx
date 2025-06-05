@@ -9,6 +9,8 @@ const Hero: React.FC = () => {
   const [isDeleting, setIsDeleting] = useState(false);
   const [resumeType, setResumeType] = useState<'ai-ml' | 'data-analyst'>('ai-ml');
   const [showQuote, setShowQuote] = useState(true);
+  const [quoteText, setQuoteText] = useState('');
+  const [showBinaryTransition, setShowBinaryTransition] = useState(false);
   
   const roles = [
     'AI/ML Engineer',
@@ -16,7 +18,25 @@ const Hero: React.FC = () => {
     'Cognitive Computing Student'
   ];
 
-  // Enhanced typing effect
+  const fullQuote = "Every data point tells a story, AI helps to write the next chapter.";
+
+  // Quote typing effect
+  useEffect(() => {
+    if (showQuote) {
+      let index = 0;
+      const timer = setInterval(() => {
+        if (index < fullQuote.length) {
+          setQuoteText(fullQuote.slice(0, index + 1));
+          index++;
+        } else {
+          clearInterval(timer);
+        }
+      }, 80);
+      return () => clearInterval(timer);
+    }
+  }, [showQuote]);
+
+  // Enhanced typing effect for roles
   useEffect(() => {
     const typeSpeed = 120;
     const deleteSpeed = 80;
@@ -47,7 +67,13 @@ const Hero: React.FC = () => {
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > window.innerHeight * 0.7) {
-        setShowQuote(false);
+        if (showQuote) {
+          setShowBinaryTransition(true);
+          setTimeout(() => {
+            setShowQuote(false);
+            setShowBinaryTransition(false);
+          }, 1000);
+        }
       } else {
         setShowQuote(true);
       }
@@ -55,34 +81,46 @@ const Hero: React.FC = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [showQuote]);
 
   return (
     <>
       {/* Quote Section - Full Screen */}
       <section 
         id="quote" 
-        className={`min-h-screen flex items-center justify-center px-4 transition-opacity duration-1000 ${
+        className={`min-h-screen flex items-center justify-center px-4 transition-all duration-1000 ${
           showQuote ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
+        } ${showBinaryTransition ? 'binary-transition' : ''}`}
         style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 5 }}
       >
         <div className="text-center max-w-5xl mx-auto">
-          <blockquote className="text-3xl md:text-5xl lg:text-6xl text-gray-100 leading-relaxed font-light">
-            <span className="text-neon-cyan text-7xl font-normal">"</span>
-            <span className="font-poppins">Every data point tells a story,</span>
-            <br />
-            <span className="bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan bg-clip-text text-transparent font-medium">
-              AI helps to write the next chapter.
-            </span>
-            <span className="text-neon-cyan text-7xl font-normal">"</span>
+          <blockquote className="text-4xl md:text-6xl lg:text-7xl leading-relaxed font-playfair">
+            <div className="mb-8">
+              <span className="text-gray-100">Every data point tells a story,</span>
+            </div>
+            <div>
+              <span className="bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan bg-clip-text text-transparent font-medium">
+                AI helps to write the next chapter.
+              </span>
+            </div>
           </blockquote>
           
-          <div className="mt-16 animate-bounce">
-            <div className="w-6 h-10 border-2 border-neon-cyan rounded-full flex justify-center mx-auto">
-              <div className="w-1 h-3 bg-neon-cyan rounded-full mt-2 animate-pulse"></div>
-            </div>
-            <p className="text-gray-400 text-sm mt-2">Scroll to continue</p>
+          {/* Binary numbers falling effect */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            {Array.from({ length: 20 }, (_, i) => (
+              <div
+                key={i}
+                className="absolute text-neon-cyan opacity-20 font-mono animate-pulse"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  fontSize: `${Math.random() * 20 + 10}px`,
+                  animationDelay: `${Math.random() * 2}s`
+                }}
+              >
+                {Math.random() > 0.5 ? '1' : '0'}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -93,83 +131,94 @@ const Hero: React.FC = () => {
         className="min-h-screen flex items-center justify-center px-4 pt-16 relative"
         style={{ marginTop: '100vh' }}
       >
-        <div className="max-w-4xl mx-auto text-center">
-          {/* Profile Picture with Dev Logo */}
-          <div className="mb-8 flex justify-center">
-            <div className="relative">
-              <div className="w-48 h-48 md:w-64 md:h-64 rounded-2xl gradient-border animate-pulse-glow overflow-hidden">
-                <img 
-                  src="https://i.ibb.co/bRW6fkT/image.jpg" 
-                  alt="Akankshya Panda"
-                  className="w-full h-full object-cover rounded-xl"
-                  onError={(e) => {
-                    // Fallback if image fails to load
-                    e.currentTarget.style.display = 'none';
-                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                  }}
-                />
-                <div className="w-full h-full rounded-xl bg-gradient-to-br from-neon-purple to-neon-cyan flex items-center justify-center hidden">
-                  <span className="text-6xl md:text-8xl font-bold text-white">AP</span>
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
+            {/* Profile Picture - Left Side */}
+            <div className="flex justify-center lg:justify-start">
+              <div className="relative">
+                <div className="w-64 h-64 md:w-80 md:h-80 rounded-2xl gradient-border animate-pulse-glow overflow-hidden">
+                  <img 
+                    src="https://i.ibb.co/bRW6fkT/image.jpg" 
+                    alt="Akankshya Panda"
+                    className="w-full h-full object-cover rounded-xl"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                    }}
+                  />
+                  <div className="w-full h-full rounded-xl bg-gradient-to-br from-neon-purple to-neon-cyan flex items-center justify-center hidden">
+                    <span className="text-6xl md:text-8xl font-bold text-white">AP</span>
+                  </div>
+                </div>
+                {/* Dev Logo on top */}
+                <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-neon-pink to-neon-purple rounded-full flex items-center justify-center border-4 border-black">
+                  <Code className="w-6 h-6 text-white" />
                 </div>
               </div>
-              {/* Dev Logo on top */}
-              <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-neon-pink to-neon-purple rounded-full flex items-center justify-center border-4 border-black">
-                <Code className="w-6 h-6 text-white" />
+            </div>
+
+            {/* Content - Right Side */}
+            <div className="flex-1 text-center lg:text-left">
+              {/* Name */}
+              <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-georgia mb-6">
+                <span className="bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan bg-clip-text text-transparent">
+                  Akankshya Panda
+                </span>
+              </h1>
+
+              {/* Animated Roles with Typing Effect */}
+              <div className="mb-8 h-16 flex items-center justify-center lg:justify-start">
+                <span className="text-xl md:text-2xl text-gray-300 mr-4 font-montserrat">I'm a</span>
+                <div className="text-xl md:text-2xl font-semibold text-neon-cyan min-w-[280px] md:min-w-[350px] text-left relative">
+                  <span className="typewriter-text">{displayedText}</span>
+                  <span className="inline-block w-0.5 h-6 md:h-8 bg-neon-cyan ml-1 animate-blink"></span>
+                </div>
               </div>
-            </div>
-          </div>
 
-          {/* Name */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold font-orbitron mb-6">
-            <span className="bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan bg-clip-text text-transparent">
-              Akankshya Panda
-            </span>
-          </h1>
+              {/* Description */}
+              <p className="text-lg md:text-xl text-gray-300 mb-8 leading-relaxed font-montserrat max-w-3xl">
+                Turning data into intuition and algorithms into action, I build systems that learn, adapt, and evolve. 
+                Where others see patterns, I see potential — the spark for something smarter. Code is my canvas, intelligence my medium. 
+                I don't just develop solutions; I train them to think.
+              </p>
 
-          {/* Enhanced Animated Roles with Typing Effect */}
-          <div className="mb-8 h-16 flex items-center justify-center">
-            <span className="text-xl md:text-2xl text-gray-300 mr-4">I'm a</span>
-            <div className="text-xl md:text-2xl font-semibold text-neon-cyan min-w-[280px] md:min-w-[350px] text-left relative">
-              <span className="typewriter-text">{displayedText}</span>
-              <span className="inline-block w-0.5 h-6 md:h-8 bg-neon-cyan ml-1 animate-blink"></span>
-            </div>
-          </div>
+              {/* Resume Toggle */}
+              <div className="mb-12">
+                <div className="flex items-center justify-center lg:justify-start mb-6">
+                  <div className="relative bg-gray-800 rounded-full p-1 flex">
+                    <button
+                      onClick={() => setResumeType('ai-ml')}
+                      className={`px-4 md:px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base ${
+                        resumeType === 'ai-ml' 
+                          ? 'bg-gradient-to-r from-neon-purple to-neon-blue text-white shadow-lg neon-glow' 
+                          : 'text-gray-400 hover:text-white'
+                      }`}
+                    >
+                      AI/ML Resume
+                    </button>
+                    <button
+                      onClick={() => setResumeType('data-analyst')}
+                      className={`px-4 md:px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base ${
+                        resumeType === 'data-analyst' 
+                          ? 'bg-gradient-to-r from-neon-purple to-neon-blue text-white shadow-lg neon-glow' 
+                          : 'text-gray-400 hover:text-white'
+                      }`}
+                    >
+                      Data Analyst Resume
+                    </button>
+                  </div>
+                </div>
 
-          {/* Resume Toggle */}
-          <div className="mb-12">
-            <div className="flex items-center justify-center mb-6">
-              <div className="relative bg-gray-800 rounded-full p-1 flex">
-                <button
-                  onClick={() => setResumeType('ai-ml')}
-                  className={`px-4 md:px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base ${
-                    resumeType === 'ai-ml' 
-                      ? 'bg-gradient-to-r from-neon-purple to-neon-blue text-white shadow-lg neon-glow' 
-                      : 'text-gray-400 hover:text-white'
-                  }`}
-                >
-                  AI/ML Resume
-                </button>
-                <button
-                  onClick={() => setResumeType('data-analyst')}
-                  className={`px-4 md:px-6 py-3 rounded-full transition-all duration-300 text-sm md:text-base ${
-                    resumeType === 'data-analyst' 
-                      ? 'bg-gradient-to-r from-neon-purple to-neon-blue text-white shadow-lg neon-glow' 
-                      : 'text-gray-400 hover:text-white'
-                  }`}
-                >
-                  Data Analyst Resume
-                </button>
+                {/* Download Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                  <Button
+                    className="bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-purple hover:to-neon-blue transition-all duration-300 text-white font-semibold py-3 px-6 rounded-lg neon-glow transform hover:scale-105"
+                  >
+                    <Download className="w-5 h-5 mr-2" />
+                    Download {resumeType === 'ai-ml' ? 'AI/ML' : 'Data Analyst'} Resume
+                  </Button>
+                </div>
               </div>
-            </div>
-
-            {/* Download Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                className="bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-purple hover:to-neon-blue transition-all duration-300 text-white font-semibold py-3 px-6 rounded-lg neon-glow transform hover:scale-105"
-              >
-                <Download className="w-5 h-5 mr-2" />
-                Download {resumeType === 'ai-ml' ? 'AI/ML' : 'Data Analyst'} Resume
-              </Button>
             </div>
           </div>
         </div>
