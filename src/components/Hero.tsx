@@ -22,6 +22,18 @@ const Hero: React.FC = () => {
   const firstLine = "Every data point tells a story,";
   const secondLine = "AI helps to write the next chapter.";
 
+  // Handle scroll to hide quote
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > 100 && showQuote) {
+        setShowQuote(false);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [showQuote]);
+
   // Quote typing effect with auto-transition
   useEffect(() => {
     if (showQuote) {
@@ -90,13 +102,13 @@ const Hero: React.FC = () => {
       {/* Quote Section - Full Screen */}
       <section 
         id="quote" 
-        className={`min-h-screen flex items-center justify-center px-4 transition-all duration-1000 ${
-          showQuote ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        className={`fixed inset-0 flex items-center justify-center px-4 transition-all duration-1000 z-50 ${
+          showQuote ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
         } ${showBinaryTransition ? 'binary-transition' : ''}`}
-        style={{ position: 'fixed', top: 0, left: 0, right: 0, zIndex: 5 }}
+        style={{ background: 'radial-gradient(ellipse at center, #0f0f0f 0%, #000000 100%)' }}
       >
-        <div className="text-center max-w-5xl mx-auto">
-          <blockquote className="text-3xl md:text-5xl lg:text-6xl leading-relaxed font-playfair">
+        <div className="text-center max-w-4xl mx-auto">
+          <blockquote className="text-2xl md:text-4xl lg:text-5xl leading-relaxed font-playfair">
             <div className="mb-6">
               <span className="text-gray-100">{quoteText1}</span>
             </div>
@@ -133,13 +145,12 @@ const Hero: React.FC = () => {
       <section 
         id="home" 
         className="min-h-screen flex items-center justify-center px-4 pt-16 relative"
-        style={{ marginTop: showQuote ? '100vh' : '0', transition: 'margin-top 1s ease-in-out' }}
       >
         <div className="max-w-7xl mx-auto w-full">
           <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-            {/* Profile Picture - Left Side */}
-            <div className="flex justify-center lg:justify-start flex-shrink-0">
-              <div className="relative">
+            {/* Profile Picture and Download Button - Left Side */}
+            <div className="flex flex-col items-center lg:items-start flex-shrink-0">
+              <div className="relative mb-6">
                 <div className="w-56 h-56 md:w-64 md:h-64 rounded-2xl gradient-border animate-pulse-glow overflow-hidden">
                   <img 
                     src="https://drive.google.com/uc?export=view&id=10YacXD6vPQWvq_beECg5cv5yeirFs1l3" 
@@ -159,12 +170,21 @@ const Hero: React.FC = () => {
                   <Code className="w-6 h-6 text-white" />
                 </div>
               </div>
+
+              {/* Download Button */}
+              <Button
+                className="bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-purple hover:to-neon-blue transition-all duration-300 text-white font-semibold py-3 px-6 rounded-lg neon-glow transform hover:scale-105"
+                onClick={() => window.open('https://drive.google.com/file/d/1w6A8HCYfBbMMedXZMfaETk5boUgijRpg/view?usp=sharing', '_blank')}
+              >
+                <Download className="w-5 h-5 mr-2" />
+                Download Resume
+              </Button>
             </div>
 
             {/* Content - Right Side */}
             <div className="flex-1 text-center lg:text-left lg:pl-8">
               {/* Name */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-georgia mb-4">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-georgia mb-4">
                 <span className="bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan bg-clip-text text-transparent">
                   Akankshya Panda
                 </span>
@@ -180,22 +200,11 @@ const Hero: React.FC = () => {
               </div>
 
               {/* Description */}
-              <p className="text-sm md:text-base text-gray-300 mb-8 leading-relaxed font-montserrat max-w-3xl text-justify">
+              <p className="text-sm md:text-base text-gray-300 mb-8 leading-relaxed font-poppins max-w-3xl text-justify">
                 Turning data into intuition and algorithms into action, I build systems that learn, adapt, and evolve. 
                 Where others see patterns, I see potential — the spark for something smarter. Code is my canvas, intelligence my medium. 
                 I don't just develop solutions; I train them to think.
               </p>
-
-              {/* Download Button */}
-              <div className="flex justify-center lg:justify-start">
-                <Button
-                  className="bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-purple hover:to-neon-blue transition-all duration-300 text-white font-semibold py-3 px-6 rounded-lg neon-glow transform hover:scale-105"
-                  onClick={() => window.open('https://drive.google.com/file/d/1w6A8HCYfBbMMedXZMfaETk5boUgijRpg/view?usp=sharing', '_blank')}
-                >
-                  <Download className="w-5 h-5 mr-2" />
-                  Download Resume
-                </Button>
-              </div>
             </div>
           </div>
         </div>

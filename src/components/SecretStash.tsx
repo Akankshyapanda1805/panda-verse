@@ -34,9 +34,9 @@ const SecretStash: React.FC = () => {
           </span>
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
           {/* Achievements */}
-          <div>
+          <div className="h-full">
             <h3 className="text-2xl font-bold text-white mb-8 flex items-center font-montserrat">
               <Trophy className="w-7 h-7 mr-3 text-neon-pink" />
               Achievements
@@ -67,13 +67,13 @@ const SecretStash: React.FC = () => {
           </div>
 
           {/* Languages */}
-          <div>
+          <div className="h-full">
             <h3 className="text-2xl font-bold text-white mb-8 flex items-center font-montserrat">
               <Globe className="w-7 h-7 mr-3 text-neon-cyan" />
               Languages
             </h3>
             
-            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50">
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 h-full">
               <div className="space-y-6">
                 {languages.map((language, index) => (
                   <div key={index} className="flex items-center justify-between">

@@ -21,8 +21,8 @@ const Projects: React.FC = () => {
       color: 'from-neon-pink to-neon-purple'
     },
     {
-      title: 'Digital Twin – Mercedes-Benz',
-      subtitle: '',
+      title: 'DIGITAL TWIN',
+      subtitle: 'MERCEDES-BENZ',
       role: 'Simulation Engineer',
       date: 'October 2024',
       technologies: ['Blender', 'Unreal Engine', 'ANSYS', 'Python'],
@@ -131,7 +131,7 @@ const Projects: React.FC = () => {
 
                 {project.note && (
                   <p className="text-gray-400 text-sm mt-4 italic font-poppins">
-                    >> {project.note}
+                    Note: {project.note}
                   </p>
                 )}
               </div>
