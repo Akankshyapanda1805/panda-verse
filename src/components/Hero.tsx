@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Download, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -108,7 +107,7 @@ const Hero: React.FC = () => {
         style={{ background: 'radial-gradient(ellipse at center, #0f0f0f 0%, #000000 100%)' }}
       >
         <div className="text-center max-w-4xl mx-auto">
-          <blockquote className="text-xl md:text-2xl lg:text-3xl leading-relaxed font-playfair">
+          <blockquote className="text-lg md:text-xl lg:text-2xl leading-relaxed font-playfair">
             <div className="mb-6">
               <span className="text-gray-100">{quoteText1}</span>
             </div>
@@ -147,17 +146,18 @@ const Hero: React.FC = () => {
         className="min-h-screen flex items-center justify-center px-4 pt-16 relative"
       >
         <div className="max-w-7xl mx-auto w-full">
-          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
             {/* Profile Picture and Download Button - Left Side */}
             <div className="flex flex-col items-center lg:items-start flex-shrink-0">
               <div className="relative mb-8">
-                <div className="w-72 h-72 md:w-80 md:h-80 rounded-2xl gradient-border animate-pulse-glow overflow-hidden relative">
-                  <div className="absolute inset-0 bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan p-1 rounded-2xl">
-                    <div className="w-full h-full rounded-xl overflow-hidden bg-black">
+                <div className="w-80 h-80 md:w-96 md:h-96 rounded-2xl overflow-hidden relative transform hover:scale-105 transition-all duration-500">
+                  <div className="absolute inset-0 bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan p-1 rounded-2xl animate-pulse-glow">
+                    <div className="w-full h-full rounded-xl overflow-hidden bg-black relative">
+                      <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/20 via-transparent to-neon-cyan/20 animate-pulse"></div>
                       <img 
                         src="https://drive.google.com/uc?export=view&id=10YacXD6vPQWvq_beECg5cv5yeirFs1l3" 
                         alt="Akankshya Panda"
-                        className="w-full h-full object-cover rounded-xl"
+                        className="w-full h-full object-cover rounded-xl relative z-10"
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
                           e.currentTarget.nextElementSibling?.classList.remove('hidden');
@@ -169,19 +169,19 @@ const Hero: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                {/* Dev Logo on top */}
-                <div className="absolute -top-4 -right-4 w-14 h-14 bg-gradient-to-r from-neon-pink to-neon-purple rounded-full flex items-center justify-center border-4 border-black">
-                  <Code className="w-7 h-7 text-white" />
+                {/* Dev Logo on top with wobble effect */}
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-neon-pink to-neon-purple rounded-full flex items-center justify-center border-4 border-black animate-bounce">
+                  <Code className="w-8 h-8 text-white animate-pulse" />
                 </div>
               </div>
 
               {/* Download Button - Centered */}
               <div className="flex justify-center w-full">
                 <Button
-                  className="bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-purple hover:to-neon-blue transition-all duration-300 text-white font-semibold py-4 px-8 rounded-lg neon-glow transform hover:scale-105 text-lg"
+                  className="bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-purple hover:to-neon-blue transition-all duration-300 text-white font-semibold py-5 px-10 rounded-lg neon-glow transform hover:scale-105 text-xl"
                   onClick={() => window.open('https://drive.google.com/file/d/1w6A8HCYfBbMMedXZMfaETk5boUgijRpg/view?usp=sharing', '_blank')}
                 >
-                  <Download className="w-6 h-6 mr-3" />
+                  <Download className="w-7 h-7 mr-3" />
                   Download Resume
                 </Button>
               </div>
@@ -190,23 +190,23 @@ const Hero: React.FC = () => {
             {/* Content - Right Side */}
             <div className="flex-1 text-center lg:text-left lg:pl-8">
               {/* Name */}
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-georgia mb-6">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold font-georgia mb-8">
                 <span className="bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan bg-clip-text text-transparent">
                   Akankshya Panda
                 </span>
               </h1>
 
               {/* Animated Roles with Typing Effect */}
-              <div className="mb-8 h-16 flex items-center justify-center lg:justify-start">
-                <span className="text-xl md:text-2xl text-gray-300 mr-4 font-montserrat">I'm a</span>
-                <div className="text-xl md:text-2xl font-semibold text-neon-cyan min-w-[280px] md:min-w-[350px] text-left relative">
+              <div className="mb-10 h-20 flex items-center justify-center lg:justify-start">
+                <span className="text-2xl md:text-3xl text-gray-300 mr-4 font-montserrat">I'm a</span>
+                <div className="text-2xl md:text-3xl font-semibold text-neon-cyan min-w-[320px] md:min-w-[400px] text-left relative">
                   <span className="typewriter-text">{displayedText}</span>
-                  <span className="inline-block w-0.5 h-6 md:h-8 bg-neon-cyan ml-1 animate-blink"></span>
+                  <span className="inline-block w-0.5 h-8 md:h-10 bg-neon-cyan ml-1 animate-blink"></span>
                 </div>
               </div>
 
               {/* Description */}
-              <p className="text-base md:text-lg text-gray-300 mb-8 leading-relaxed font-poppins max-w-4xl text-justify">
+              <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed font-poppins max-w-4xl text-justify">
                 Turning data into intuition and algorithms into action, I build systems that learn, adapt, and evolve. 
                 Where others see patterns, I see potential — the spark for something smarter. Code is my canvas, intelligence my medium. 
                 I don't just develop solutions; I train them to think.

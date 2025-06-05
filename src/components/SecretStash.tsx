@@ -34,21 +34,21 @@ const SecretStash: React.FC = () => {
           </span>
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Achievements */}
-          <div className="flex flex-col h-full">
+          <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-neon-purple/50 transition-all duration-300">
             <h3 className="text-2xl font-bold text-white mb-8 flex items-center font-montserrat">
               <Trophy className="w-7 h-7 mr-3 text-neon-pink" />
               Achievements
             </h3>
             
-            <div className="space-y-6 flex-1">
+            <div className="space-y-6">
               {achievements.map((achievement, index) => (
                 <div
                   key={index}
-                  className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-neon-purple/50 transition-all duration-300 group h-full"
+                  className="bg-gray-800/30 rounded-lg p-6 border border-gray-600/30 hover:border-neon-purple/30 transition-all duration-300"
                 >
-                  <div className="flex items-start space-x-4 h-full">
+                  <div className="flex items-start space-x-4">
                     <div className={`p-3 rounded-lg bg-gradient-to-r ${achievement.color} flex-shrink-0`}>
                       {achievement.icon}
                     </div>
@@ -67,28 +67,28 @@ const SecretStash: React.FC = () => {
           </div>
 
           {/* Languages */}
-          <div className="flex flex-col h-full">
+          <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-neon-cyan/50 transition-all duration-300">
             <h3 className="text-2xl font-bold text-white mb-8 flex items-center font-montserrat">
               <Globe className="w-7 h-7 mr-3 text-neon-cyan" />
               Languages
             </h3>
             
-            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 flex-1">
-              <div className="space-y-6 h-full flex flex-col justify-center">
-                {languages.map((language, index) => (
-                  <div key={index} className="flex items-center justify-between">
+            <div className="space-y-6">
+              {languages.map((language, index) => (
+                <div key={index} className="bg-gray-800/30 rounded-lg p-6 border border-gray-600/30 hover:border-neon-cyan/30 transition-all duration-300">
+                  <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <Star className="w-5 h-5 text-neon-green" />
-                      <span className="text-white font-semibold font-montserrat">
+                      <span className="text-white font-semibold font-montserrat text-lg">
                         {language.name}
                       </span>
                     </div>
-                    <span className="text-gray-400 text-sm font-poppins">
+                    <span className="text-gray-400 font-poppins">
                       {language.level}
                     </span>
                   </div>
-                ))}
-              </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>

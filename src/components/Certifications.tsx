@@ -8,84 +8,96 @@ const Certifications: React.FC = () => {
       name: "Career Essentials in Data Analysis",
       provider: "Microsoft and LinkedIn",
       date: "July 2024",
-      image: "https://i.ibb.co/WpK9ZJ6/image.png",
+      image: "https://drive.google.com/uc?export=view&id=1MA1xSCXTWT7uKtBLtTmAvYSzv1PSzHid",
+      link: "https://drive.google.com/file/d/1MA1xSCXTWT7uKtBLtTmAvYSzv1PSzHid/view?usp=sharing",
       color: "from-neon-blue to-neon-cyan"
     },
     {
       name: "Virtual Internship",
       provider: "Microsoft and AICTE",
       date: "June 2024",
-      image: "https://i.ibb.co/SZkYbQL/image.png",
+      image: "https://drive.google.com/uc?export=view&id=1sc3KO-FSiSMFsaYgxtFm2EjuO7CGUXwf",
+      link: "https://drive.google.com/file/d/1sc3KO-FSiSMFsaYgxtFm2EjuO7CGUXwf/view?usp=sharing",
       color: "from-neon-purple to-neon-pink"
     },
     {
       name: "Machine Learning Onramp",
       provider: "MATLAB",
       date: "April 2024",
-      image: "https://i.ibb.co/mV5KqDW/image.png",
+      image: "https://drive.google.com/uc?export=view&id=1YHr7IUvJ4au-uIjhKp3gHiCAUeoODia9",
+      link: "https://drive.google.com/file/d/1YHr7IUvJ4au-uIjhKp3gHiCAUeoODia9/view?usp=sharing",
       color: "from-neon-green to-neon-blue"
     },
     {
       name: "Deep Learning Onramp",
       provider: "MATLAB",
       date: "April 2024",
-      image: "https://i.ibb.co/LzBkD31/image.png",
+      image: "https://drive.google.com/uc?export=view&id=1QxKKZdB1MOC8kpzTD8o3l3JhshvWSq-q",
+      link: "https://drive.google.com/file/d/1QxKKZdB1MOC8kpzTD8o3l3JhshvWSq-q/view?usp=sharing",
       color: "from-neon-cyan to-neon-purple"
     },
     {
       name: "SRM HACKATHON 8.0",
       provider: "SRM University",
       date: "April 2024",
-      image: "https://i.ibb.co/tM76kvM/image.png",
+      image: "https://drive.google.com/uc?export=view&id=1jjW8LkRIA1n11Ubj-GIVN-iX_QfoO7HO",
+      link: "https://drive.google.com/file/d/1jjW8LkRIA1n11Ubj-GIVN-iX_QfoO7HO/view?usp=sharing",
       color: "from-neon-pink to-neon-blue"
     },
     {
       name: "Computer Vision Essentials",
       provider: "Great Learning",
       date: "April 2024",
-      image: "https://i.ibb.co/LzBkD31/image.png",
+      image: "https://drive.google.com/uc?export=view&id=1LRUDrD4pmfGSVJaETVy6p89mXgZU4Z-R",
+      link: "https://drive.google.com/file/d/1LRUDrD4pmfGSVJaETVy6p89mXgZU4Z-R/view?usp=sharing",
       color: "from-neon-blue to-neon-green"
     },
     {
       name: "Database Structure and Management with MySQL",
       provider: "Coursera",
       date: "March 2024",
-      image: "https://i.ibb.co/DPV2TyV/image.png",
+      image: "https://drive.google.com/uc?export=view&id=1PEGc0pzs684x0qzPSfINWtoFYry7LtfC",
+      link: "https://drive.google.com/file/d/1PEGc0pzs684x0qzPSfINWtoFYry7LtfC/view?usp=sharing",
       color: "from-neon-purple to-neon-cyan"
     },
     {
       name: "LAYER'24 Blockchain Hackathon",
       provider: "Blockchain Community",
       date: "March 2024",
-      image: "https://i.ibb.co/YFqMHJR/image.png",
+      image: "https://drive.google.com/uc?export=view&id=1RDakDP27h9biQF-FvgMVB4JffpR27myj",
+      link: "https://drive.google.com/file/d/1RDakDP27h9biQF-FvgMVB4JffpR27myj/view?usp=sharing",
       color: "from-neon-green to-neon-pink"
     },
     {
       name: "Machine Learning Foundations",
       provider: "AWS Academy",
       date: "February 2024",
-      image: "https://i.ibb.co/150JbjP/image.png",
+      image: "https://drive.google.com/uc?export=view&id=1YGs_bDXQRLCVyJtxbTV7N663hvHB3hD0",
+      link: "https://drive.google.com/file/d/1YGs_bDXQRLCVyJtxbTV7N663hvHB3hD0/view?usp=sharing",
       color: "from-neon-cyan to-neon-blue"
     },
     {
       name: "Cognitive Analytics and its Application",
       provider: "Academic Institution",
       date: "September 2023",
-      image: "https://i.ibb.co/3HJTNjD/image.png",
+      image: "https://drive.google.com/uc?export=view&id=1XOEsJwr45n5hGOh9PzMdDdliD4JussSc",
+      link: "https://drive.google.com/file/d/1XOEsJwr45n5hGOh9PzMdDdliD4JussSc/view?usp=sharing",
       color: "from-neon-pink to-neon-purple"
     },
     {
       name: "Data Analytics with Python",
       provider: "MyCaption Academy",
       date: "March 2023",
-      image: "https://i.ibb.co/PGbQ3k1/image.png",
+      image: "https://drive.google.com/uc?export=view&id=1xkyAHiIYNGWaZvMzVobUy0oXHsqYXnfG",
+      link: "https://drive.google.com/file/d/1xkyAHiIYNGWaZvMzVobUy0oXHsqYXnfG/view?usp=sharing",
       color: "from-neon-blue to-neon-cyan"
     },
     {
       name: "CAD 2.0 Hackathon",
       provider: "CAD Community",
       date: "March 2023",
-      image: "https://i.ibb.co/20cn4FQ/image.png",
+      image: "https://drive.google.com/uc?export=view&id=16vQi9e8yJ8F6odqnEicuto9WfWRkoMHF",
+      link: "https://drive.google.com/file/d/16vQi9e8yJ8F6odqnEicuto9WfWRkoMHF/view?usp=sharing",
       color: "from-neon-purple to-neon-green"
     }
   ];
@@ -109,13 +121,13 @@ const Certifications: React.FC = () => {
                 <img 
                   src={cert.image} 
                   alt={cert.name}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
+                  className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500 bg-white"
                   onError={(e) => {
                     e.currentTarget.style.display = 'none';
                     e.currentTarget.nextElementSibling?.classList.remove('hidden');
                   }}
                 />
-                <div className={`w-full h-48 rounded-lg bg-gradient-to-r ${cert.color} flex items-center justify-center hidden`}>
+                <div className={`w-full h-64 rounded-lg bg-gradient-to-r ${cert.color} flex items-center justify-center hidden`}>
                   <Award className="w-16 h-16 text-white" />
                 </div>
               </div>
@@ -132,10 +144,15 @@ const Certifications: React.FC = () => {
                   <span>{cert.date}</span>
                 </div>
                 
-                <button className="flex items-center text-gray-400 hover:text-neon-green transition-colors text-sm font-montserrat">
+                <a 
+                  href={cert.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center text-gray-400 hover:text-neon-green transition-colors text-sm font-montserrat"
+                >
                   <ExternalLink className="w-4 h-4 mr-1" />
                   View
-                </button>
+                </a>
               </div>
             </div>
           ))}
