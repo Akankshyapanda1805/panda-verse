@@ -34,25 +34,25 @@ const SecretStash: React.FC = () => {
           </span>
         </h2>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Achievements */}
-          <div className="h-full">
+          <div className="flex flex-col h-full">
             <h3 className="text-2xl font-bold text-white mb-8 flex items-center font-montserrat">
               <Trophy className="w-7 h-7 mr-3 text-neon-pink" />
               Achievements
             </h3>
             
-            <div className="space-y-6">
+            <div className="space-y-6 flex-1">
               {achievements.map((achievement, index) => (
                 <div
                   key={index}
-                  className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-neon-purple/50 transition-all duration-300 group"
+                  className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 hover:border-neon-purple/50 transition-all duration-300 group h-full"
                 >
-                  <div className="flex items-start space-x-4">
+                  <div className="flex items-start space-x-4 h-full">
                     <div className={`p-3 rounded-lg bg-gradient-to-r ${achievement.color} flex-shrink-0`}>
                       {achievement.icon}
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <h4 className="text-lg font-semibold text-white mb-2 font-montserrat">
                         {achievement.title}
                       </h4>
@@ -67,14 +67,14 @@ const SecretStash: React.FC = () => {
           </div>
 
           {/* Languages */}
-          <div className="h-full">
+          <div className="flex flex-col h-full">
             <h3 className="text-2xl font-bold text-white mb-8 flex items-center font-montserrat">
               <Globe className="w-7 h-7 mr-3 text-neon-cyan" />
               Languages
             </h3>
             
-            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 h-full">
-              <div className="space-y-6">
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-6 border border-gray-700/50 flex-1">
+              <div className="space-y-6 h-full flex flex-col justify-center">
                 {languages.map((language, index) => (
                   <div key={index} className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">

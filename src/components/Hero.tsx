@@ -25,7 +25,7 @@ const Hero: React.FC = () => {
   // Handle scroll to hide quote
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 100 && showQuote) {
+      if (window.scrollY > 50 && showQuote) {
         setShowQuote(false);
       }
     };
@@ -108,7 +108,7 @@ const Hero: React.FC = () => {
         style={{ background: 'radial-gradient(ellipse at center, #0f0f0f 0%, #000000 100%)' }}
       >
         <div className="text-center max-w-4xl mx-auto">
-          <blockquote className="text-2xl md:text-4xl lg:text-5xl leading-relaxed font-playfair">
+          <blockquote className="text-xl md:text-2xl lg:text-3xl leading-relaxed font-playfair">
             <div className="mb-6">
               <span className="text-gray-100">{quoteText1}</span>
             </div>
@@ -147,60 +147,66 @@ const Hero: React.FC = () => {
         className="min-h-screen flex items-center justify-center px-4 pt-16 relative"
       >
         <div className="max-w-7xl mx-auto w-full">
-          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             {/* Profile Picture and Download Button - Left Side */}
             <div className="flex flex-col items-center lg:items-start flex-shrink-0">
-              <div className="relative mb-6">
-                <div className="w-56 h-56 md:w-64 md:h-64 rounded-2xl gradient-border animate-pulse-glow overflow-hidden">
-                  <img 
-                    src="https://drive.google.com/uc?export=view&id=10YacXD6vPQWvq_beECg5cv5yeirFs1l3" 
-                    alt="Akankshya Panda"
-                    className="w-full h-full object-cover rounded-xl"
-                    onError={(e) => {
-                      e.currentTarget.style.display = 'none';
-                      e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                    }}
-                  />
-                  <div className="w-full h-full rounded-xl bg-gradient-to-br from-neon-purple to-neon-cyan flex items-center justify-center hidden">
-                    <span className="text-6xl md:text-8xl font-bold text-white">AP</span>
+              <div className="relative mb-8">
+                <div className="w-72 h-72 md:w-80 md:h-80 rounded-2xl gradient-border animate-pulse-glow overflow-hidden relative">
+                  <div className="absolute inset-0 bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan p-1 rounded-2xl">
+                    <div className="w-full h-full rounded-xl overflow-hidden bg-black">
+                      <img 
+                        src="https://drive.google.com/uc?export=view&id=10YacXD6vPQWvq_beECg5cv5yeirFs1l3" 
+                        alt="Akankshya Panda"
+                        className="w-full h-full object-cover rounded-xl"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                        }}
+                      />
+                      <div className="w-full h-full rounded-xl bg-gradient-to-br from-neon-purple to-neon-cyan flex items-center justify-center hidden">
+                        <span className="text-8xl md:text-9xl font-bold text-white">AP</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 {/* Dev Logo on top */}
-                <div className="absolute -top-4 -right-4 w-12 h-12 bg-gradient-to-r from-neon-pink to-neon-purple rounded-full flex items-center justify-center border-4 border-black">
-                  <Code className="w-6 h-6 text-white" />
+                <div className="absolute -top-4 -right-4 w-14 h-14 bg-gradient-to-r from-neon-pink to-neon-purple rounded-full flex items-center justify-center border-4 border-black">
+                  <Code className="w-7 h-7 text-white" />
                 </div>
               </div>
 
-              {/* Download Button */}
-              <Button
-                className="bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-purple hover:to-neon-blue transition-all duration-300 text-white font-semibold py-3 px-6 rounded-lg neon-glow transform hover:scale-105"
-                onClick={() => window.open('https://drive.google.com/file/d/1w6A8HCYfBbMMedXZMfaETk5boUgijRpg/view?usp=sharing', '_blank')}
-              >
-                <Download className="w-5 h-5 mr-2" />
-                Download Resume
-              </Button>
+              {/* Download Button - Centered */}
+              <div className="flex justify-center w-full">
+                <Button
+                  className="bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-purple hover:to-neon-blue transition-all duration-300 text-white font-semibold py-4 px-8 rounded-lg neon-glow transform hover:scale-105 text-lg"
+                  onClick={() => window.open('https://drive.google.com/file/d/1w6A8HCYfBbMMedXZMfaETk5boUgijRpg/view?usp=sharing', '_blank')}
+                >
+                  <Download className="w-6 h-6 mr-3" />
+                  Download Resume
+                </Button>
+              </div>
             </div>
 
             {/* Content - Right Side */}
             <div className="flex-1 text-center lg:text-left lg:pl-8">
               {/* Name */}
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold font-georgia mb-4">
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold font-georgia mb-6">
                 <span className="bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan bg-clip-text text-transparent">
                   Akankshya Panda
                 </span>
               </h1>
 
               {/* Animated Roles with Typing Effect */}
-              <div className="mb-6 h-12 flex items-center justify-center lg:justify-start">
-                <span className="text-lg md:text-xl text-gray-300 mr-3 font-montserrat">I'm a</span>
-                <div className="text-lg md:text-xl font-semibold text-neon-cyan min-w-[250px] md:min-w-[300px] text-left relative">
+              <div className="mb-8 h-16 flex items-center justify-center lg:justify-start">
+                <span className="text-xl md:text-2xl text-gray-300 mr-4 font-montserrat">I'm a</span>
+                <div className="text-xl md:text-2xl font-semibold text-neon-cyan min-w-[280px] md:min-w-[350px] text-left relative">
                   <span className="typewriter-text">{displayedText}</span>
-                  <span className="inline-block w-0.5 h-5 md:h-6 bg-neon-cyan ml-1 animate-blink"></span>
+                  <span className="inline-block w-0.5 h-6 md:h-8 bg-neon-cyan ml-1 animate-blink"></span>
                 </div>
               </div>
 
               {/* Description */}
-              <p className="text-sm md:text-base text-gray-300 mb-8 leading-relaxed font-poppins max-w-3xl text-justify">
+              <p className="text-base md:text-lg text-gray-300 mb-8 leading-relaxed font-poppins max-w-4xl text-justify">
                 Turning data into intuition and algorithms into action, I build systems that learn, adapt, and evolve. 
                 Where others see patterns, I see potential — the spark for something smarter. Code is my canvas, intelligence my medium. 
                 I don't just develop solutions; I train them to think.

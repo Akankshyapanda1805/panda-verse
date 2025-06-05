@@ -36,13 +36,13 @@ const Contact: React.FC = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           {/* Contact Information */}
-          <div className="space-y-8">
-            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50">
+          <div className="flex flex-col h-full">
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 flex-1">
               <h3 className="text-2xl font-semibold text-white mb-6 font-montserrat">
                 Contact Information
               </h3>
               
-              <div className="space-y-6">
+              <div className="space-y-6 h-full flex flex-col justify-center">
                 <div className="flex items-center space-x-4">
                   <div className="p-3 bg-gradient-to-r from-neon-pink to-neon-purple rounded-lg">
                     <MapPin className="w-5 h-5 text-white" />
@@ -111,68 +111,69 @@ const Contact: React.FC = () => {
           </div>
 
           {/* Contact Form */}
-          <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50">
-            <h3 className="text-2xl font-semibold text-white mb-6 font-montserrat">
-              Send Message
-            </h3>
-            
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="block text-gray-400 text-sm mb-2 font-poppins">
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-gray-800/60 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-neon-purple transition-colors duration-300 font-poppins"
-                  placeholder="Your Name"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="email" className="block text-gray-400 text-sm mb-2 font-poppins">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-gray-800/60 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-neon-purple transition-colors duration-300 font-poppins"
-                  placeholder="your.email@example.com"
-                />
-              </div>
-
-              <div>
-                <label htmlFor="message" className="block text-gray-400 text-sm mb-2 font-poppins">
-                  Message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="w-full px-4 py-3 bg-gray-800/60 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-neon-purple transition-colors duration-300 resize-none font-poppins"
-                  placeholder="Your message..."
-                />
-              </div>
-
-              <Button
-                type="submit"
-                className="w-full bg-gradient-to-r from-neon-cyan to-neon-blue hover:from-neon-blue hover:to-neon-purple transition-all duration-300 text-white font-semibold py-3 px-6 rounded-lg neon-glow transform hover:scale-105"
-              >
-                <Send className="w-5 h-5 mr-2" />
+          <div className="flex flex-col h-full">
+            <div className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 flex-1">
+              <h3 className="text-2xl font-semibold text-white mb-6 font-montserrat">
                 Send Message
-              </Button>
-            </form>
+              </h3>
+              
+              <form onSubmit={handleSubmit} className="space-y-6 h-full flex flex-col">
+                <div>
+                  <label htmlFor="name" className="block text-gray-400 text-sm mb-2 font-poppins">
+                    Name
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-gray-800/60 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-neon-purple transition-colors duration-300 font-poppins"
+                    placeholder="Your Name"
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block text-gray-400 text-sm mb-2 font-poppins">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-gray-800/60 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-neon-purple transition-colors duration-300 font-poppins"
+                    placeholder="your.email@example.com"
+                  />
+                </div>
+
+                <div className="flex-1">
+                  <label htmlFor="message" className="block text-gray-400 text-sm mb-2 font-poppins">
+                    Message
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    className="w-full h-full min-h-[120px] px-4 py-3 bg-gray-800/60 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-neon-purple transition-colors duration-300 resize-none font-poppins"
+                    placeholder="Your message..."
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-neon-cyan to-neon-blue hover:from-neon-blue hover:to-neon-purple transition-all duration-300 text-white font-semibold py-3 px-6 rounded-lg neon-glow transform hover:scale-105"
+                >
+                  <Send className="w-5 h-5 mr-2" />
+                  Send Message
+                </Button>
+              </form>
+            </div>
           </div>
         </div>
 
@@ -183,6 +184,9 @@ const Contact: React.FC = () => {
               Let's Collaborate!
             </span>
           </h3>
+          <p className="text-gray-300 text-lg font-poppins">
+            Stars gently pulse in the background as we connect and create the future together.
+          </p>
         </div>
       </div>
     </section>

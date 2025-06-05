@@ -39,24 +39,24 @@ const Experience: React.FC = () => {
           </span>
         </h2>
 
-        <div className="space-y-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-neon-cyan/50 transition-all duration-300 group"
+              className="bg-gray-900/50 backdrop-blur-sm rounded-xl p-8 border border-gray-700/50 hover:border-neon-cyan/50 transition-all duration-300 group h-full"
             >
-              <div className="flex flex-col md:flex-row md:items-start md:justify-between mb-6">
-                <div className="flex-1">
+              <div className="flex flex-col h-full">
+                <div className="mb-6">
                   <div className="flex items-center mb-2">
                     <div className={`p-2 rounded-lg bg-gradient-to-r ${exp.color} mr-3`}>
                       <Briefcase className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="text-2xl font-bold text-white font-montserrat">
+                    <h3 className="text-xl font-bold text-white font-montserrat">
                       {exp.title}
                     </h3>
                   </div>
                   
-                  <h4 className="text-xl text-neon-cyan font-semibold mb-2 font-montserrat">
+                  <h4 className="text-lg text-neon-cyan font-semibold mb-2 font-montserrat">
                     {exp.company}
                   </h4>
                   
@@ -71,15 +71,15 @@ const Experience: React.FC = () => {
                     </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="space-y-3">
-                {exp.description.map((desc, descIndex) => (
-                  <div key={descIndex} className="flex items-start">
-                    <div className="w-2 h-2 bg-neon-cyan rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <p className="text-gray-300 leading-relaxed font-poppins">{desc}</p>
-                  </div>
-                ))}
+                <div className="space-y-3 flex-1">
+                  {exp.description.map((desc, descIndex) => (
+                    <div key={descIndex} className="flex items-start">
+                      <div className="w-2 h-2 bg-neon-cyan rounded-full mt-2 mr-3 flex-shrink-0"></div>
+                      <p className="text-gray-300 leading-relaxed font-poppins">{desc}</p>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           ))}
