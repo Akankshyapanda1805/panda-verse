@@ -1,6 +1,8 @@
+
 import React, { useState, useEffect } from 'react';
 import { Download, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+
 const Hero: React.FC = () => {
   const [currentRole, setCurrentRole] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
@@ -10,6 +12,7 @@ const Hero: React.FC = () => {
   const [quoteText2, setQuoteText2] = useState('');
   const [showSecondLine, setShowSecondLine] = useState(false);
   const [showBinaryTransition, setShowBinaryTransition] = useState(false);
+  
   const roles = ['AI/ML Engineer', 'Data Analyst', 'Cognitive Computing Student'];
   const firstLine = "Every data point tells a story,";
   const secondLine = "AI helps to write the next chapter.";
@@ -65,6 +68,7 @@ const Hero: React.FC = () => {
     const deleteSpeed = 80;
     const pauseTime = 2000;
     const currentText = roles[currentRole];
+    
     const timeout = setTimeout(() => {
       if (!isDeleting) {
         if (displayedText.length < currentText.length) {
@@ -81,37 +85,52 @@ const Hero: React.FC = () => {
         }
       }
     }, isDeleting ? deleteSpeed : typeSpeed);
+    
     return () => clearTimeout(timeout);
   }, [displayedText, isDeleting, currentRole, roles]);
-  return <>
+
+  return (
+    <>
       {/* Quote Section - Full Screen */}
-      <section id="quote" className={`fixed inset-0 flex items-center justify-center px-4 transition-all duration-1000 z-50 ${showQuote ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'} ${showBinaryTransition ? 'binary-transition' : ''}`} style={{
-      background: 'radial-gradient(ellipse at center, #0f0f0f 0%, #000000 100%)'
-    }}>
+      <section 
+        id="quote" 
+        className={`fixed inset-0 flex items-center justify-center px-4 transition-all duration-1000 z-50 ${
+          showQuote ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+        } ${showBinaryTransition ? 'binary-transition' : ''}`}
+        style={{
+          background: 'radial-gradient(ellipse at center, #0f0f0f 0%, #000000 100%)'
+        }}
+      >
         <div className="text-center max-w-4xl mx-auto">
           <blockquote className="text-lg md:text-xl lg:text-2xl leading-relaxed font-playfair">
             <div className="mb-6">
               <span className="text-gray-100">{quoteText1}</span>
             </div>
-            {showSecondLine && <div>
+            {showSecondLine && (
+              <div>
                 <span className="bg-gradient-to-r from-neon-purple via-neon-pink to-neon-cyan bg-clip-text text-transparent font-medium">
                   {quoteText2}
                 </span>
-              </div>}
+              </div>
+            )}
           </blockquote>
           
           {/* Binary numbers falling effect */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
-            {Array.from({
-            length: 20
-          }, (_, i) => <div key={i} className="absolute text-neon-cyan opacity-20 font-mono animate-pulse" style={{
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            fontSize: `${Math.random() * 20 + 10}px`,
-            animationDelay: `${Math.random() * 2}s`
-          }}>
+            {Array.from({ length: 20 }, (_, i) => (
+              <div
+                key={i}
+                className="absolute text-neon-cyan opacity-20 font-mono animate-pulse"
+                style={{
+                  left: `${Math.random() * 100}%`,
+                  top: `${Math.random() * 100}%`,
+                  fontSize: `${Math.random() * 20 + 10}px`,
+                  animationDelay: `${Math.random() * 2}s`
+                }}
+              >
                 {Math.random() > 0.5 ? '1' : '0'}
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -127,10 +146,15 @@ const Hero: React.FC = () => {
                   <div className="absolute inset-0 bg-gradient-to-r from-neon-pink via-neon-purple to-neon-cyan p-1 rounded-2xl animate-pulse-glow">
                     <div className="w-full h-full rounded-xl overflow-hidden bg-black relative">
                       <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/20 via-transparent to-neon-cyan/20 animate-pulse"></div>
-                      <img src="https://drive.google.com/uc?export=view&id=10YacXD6vPQWvq_beECg5cv5yeirFs1l3" alt="Akankshya Panda" className="w-full h-full object-cover rounded-xl relative z-10" onError={e => {
-                      e.currentTarget.style.display = 'none';
-                      e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                    }} />
+                      <img 
+                        src="https://i.ibb.co/PZ3wTJ5q/profile-image.jpg" 
+                        alt="Akankshya Panda" 
+                        className="w-full h-full object-cover rounded-xl relative z-10"
+                        onError={(e) => {
+                          e.currentTarget.style.display = 'none';
+                          e.currentTarget.nextElementSibling?.classList.remove('hidden');
+                        }}
+                      />
                       <div className="w-full h-full rounded-xl bg-gradient-to-br from-neon-purple to-neon-cyan flex items-center justify-center hidden">
                         <span className="text-8xl md:text-9xl font-bold text-white">AP</span>
                       </div>
@@ -154,8 +178,8 @@ const Hero: React.FC = () => {
               </h1>
 
               {/* Animated Roles with Typing Effect - All in one line */}
-              <div className="mb-10 h-20 flex items-center justify-center lg:justify-start">
-                <div className="flex items-center flex-wrap gap-2">
+              <div className="mb-10 h-16 flex items-center justify-center lg:justify-start">
+                <div className="flex items-center gap-2 flex-wrap">
                   <span className="text-2xl md:text-3xl text-gray-300 font-montserrat">I'm a</span>
                   <div className="text-2xl md:text-3xl font-semibold text-neon-cyan min-w-[320px] md:min-w-[400px] text-left relative">
                     <span className="typewriter-text">{displayedText}</span>
@@ -165,7 +189,7 @@ const Hero: React.FC = () => {
               </div>
 
               {/* Description */}
-              <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed font-poppins max-w-4xl text-justify py-0">
+              <p className="text-lg md:text-xl text-gray-300 mb-10 leading-relaxed font-poppins max-w-4xl text-justify">
                 Turning data into intuition and algorithms into action, I build systems that learn, adapt, and evolve. 
                 Where others see patterns, I see potential — the spark for something smarter. Code is my canvas, intelligence my medium. 
                 I don't just develop solutions; I train them to think.
@@ -175,13 +199,18 @@ const Hero: React.FC = () => {
 
           {/* Download Button - Centered */}
           <div className="flex justify-center w-full mt-12">
-            <Button className="bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-purple hover:to-neon-blue transition-all duration-300 text-white font-semibold py-6 px-12 rounded-lg neon-glow transform hover:scale-105 text-xl" onClick={() => window.open('https://drive.google.com/file/d/1w6A8HCYfBbMMedXZMfaETk5boUgijRpg/view?usp=sharing', '_blank')}>
+            <Button 
+              className="bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-purple hover:to-neon-blue transition-all duration-300 text-white font-semibold py-6 px-12 rounded-lg neon-glow transform hover:scale-105 text-xl"
+              onClick={() => window.open('https://drive.google.com/file/d/1w6A8HCYfBbMMedXZMfaETk5boUgijRpg/view?usp=sharing', '_blank')}
+            >
               <Download className="w-7 h-7 mr-3" />
               Download Resume
             </Button>
           </div>
         </div>
       </section>
-    </>;
+    </>
+  );
 };
+
 export default Hero;

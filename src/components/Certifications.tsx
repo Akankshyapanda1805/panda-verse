@@ -1,3 +1,4 @@
+
 import React from 'react';
 import { Award, Calendar, ExternalLink } from 'lucide-react';
 
@@ -110,18 +111,16 @@ const Certifications: React.FC = () => {
           </span>
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {certifications.map((cert, index) => (
             <div
               key={index}
-              className="bg-gray-900/60 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-neon-green transition-all duration-500 transform hover:scale-105 hover:rotate-1 neon-glow group cursor-pointer"
+              className={`bg-gray-900/60 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-neon-green transition-all duration-500 transform hover:scale-105 hover:rotate-1 neon-glow group cursor-pointer bg-gradient-to-br ${cert.color} bg-opacity-10`}
             >
               <div className="mb-4 rounded-lg overflow-hidden">
-                <img 
-                  src={cert.image} 
-                  alt={cert.name}
-                  className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500 bg-white"
-                />
+                <div className={`w-full h-48 rounded-lg bg-gradient-to-br ${cert.color} p-4 flex items-center justify-center`}>
+                  <Award className="w-16 h-16 text-white opacity-80" />
+                </div>
               </div>
 
               <h3 className="text-lg font-bold text-white mb-2 group-hover:text-neon-green transition-colors leading-tight font-playfair">
