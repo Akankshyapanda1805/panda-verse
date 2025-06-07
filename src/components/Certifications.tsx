@@ -115,7 +115,7 @@ const Certifications: React.FC = () => {
           {certifications.map((cert, index) => (
             <div
               key={index}
-              className={`bg-gray-900/60 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-neon-green transition-all duration-500 transform hover:scale-105 hover:rotate-1 neon-glow group cursor-pointer bg-gradient-to-br ${cert.color} bg-opacity-10`}
+              className="bg-gray-900/60 backdrop-blur-sm rounded-xl p-6 border border-gray-700 hover:border-neon-green transition-all duration-500 transform hover:scale-105 hover:rotate-1 neon-glow group cursor-pointer"
             >
               <div className="mb-4 rounded-lg overflow-hidden">
                 <div className={`w-full h-48 rounded-lg bg-gradient-to-br ${cert.color} p-4 flex items-center justify-center`}>

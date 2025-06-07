@@ -147,7 +147,7 @@ const Hero: React.FC = () => {
                     <div className="w-full h-full rounded-xl overflow-hidden bg-black relative">
                       <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/20 via-transparent to-neon-cyan/20 animate-pulse"></div>
                       <img 
-                        src="https://i.ibb.co/PZ3wTJ5q/profile-image.jpg" 
+                        src="https://i.ibb.co/PZ3wTJ5/profile-image.jpg" 
                         alt="Akankshya Panda" 
                         className="w-full h-full object-cover rounded-xl relative z-10"
                         onError={(e) => {
