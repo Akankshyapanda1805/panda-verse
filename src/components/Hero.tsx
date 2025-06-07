@@ -120,7 +120,7 @@ const Hero: React.FC = () => {
       <section id="home" className="min-h-screen flex items-center justify-center px-4 pt-16 relative">
         <div className="max-w-7xl mx-auto w-full">
           <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
-            {/* Profile Picture and Download Button - Left Side */}
+            {/* Profile Picture - Left Side */}
             <div className="flex flex-col items-center lg:items-start flex-shrink-0">
               <div className="relative mb-8">
                 <div className="w-80 h-80 md:w-96 md:h-96 rounded-2xl overflow-hidden relative transform hover:scale-105 transition-all duration-500">
@@ -138,17 +138,9 @@ const Hero: React.FC = () => {
                   </div>
                 </div>
                 {/* Dev Logo on top with wobble effect */}
-                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-neon-pink to-neon-purple rounded-full flex items-center justify-center border-4 border-black animate-bounce">
+                <div className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-neon-pink to-neon-purple rounded-full flex items-center justify-center border-4 border-black animate-wobble">
                   <Code className="w-8 h-8 text-white animate-pulse" />
                 </div>
-              </div>
-
-              {/* Download Button - Centered */}
-              <div className="flex justify-center w-full">
-                <Button className="bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-purple hover:to-neon-blue transition-all duration-300 text-white font-semibold py-5 px-10 rounded-lg neon-glow transform hover:scale-105 text-xl" onClick={() => window.open('https://drive.google.com/file/d/1w6A8HCYfBbMMedXZMfaETk5boUgijRpg/view?usp=sharing', '_blank')}>
-                  <Download className="w-7 h-7 mr-3" />
-                  Download Resume
-                </Button>
               </div>
             </div>
 
@@ -161,12 +153,14 @@ const Hero: React.FC = () => {
                 </span>
               </h1>
 
-              {/* Animated Roles with Typing Effect */}
+              {/* Animated Roles with Typing Effect - All in one line */}
               <div className="mb-10 h-20 flex items-center justify-center lg:justify-start">
-                <span className="text-2xl md:text-3xl text-gray-300 mr-4 font-montserrat">I'm a</span>
-                <div className="text-2xl md:text-3xl font-semibold text-neon-cyan min-w-[320px] md:min-w-[400px] text-left relative">
-                  <span className="typewriter-text my-[27px]">{displayedText}</span>
-                  <span className="inline-block w-0.5 h-8 md:h-10 bg-neon-cyan ml-1 animate-blink"></span>
+                <div className="flex items-center flex-wrap gap-2">
+                  <span className="text-2xl md:text-3xl text-gray-300 font-montserrat">I'm a</span>
+                  <div className="text-2xl md:text-3xl font-semibold text-neon-cyan min-w-[320px] md:min-w-[400px] text-left relative">
+                    <span className="typewriter-text">{displayedText}</span>
+                    <span className="inline-block w-0.5 h-8 md:h-10 bg-neon-cyan ml-1 animate-blink"></span>
+                  </div>
                 </div>
               </div>
 
@@ -177,6 +171,14 @@ const Hero: React.FC = () => {
                 I don't just develop solutions; I train them to think.
               </p>
             </div>
+          </div>
+
+          {/* Download Button - Centered */}
+          <div className="flex justify-center w-full mt-12">
+            <Button className="bg-gradient-to-r from-neon-pink to-neon-purple hover:from-neon-purple hover:to-neon-blue transition-all duration-300 text-white font-semibold py-6 px-12 rounded-lg neon-glow transform hover:scale-105 text-xl" onClick={() => window.open('https://drive.google.com/file/d/1w6A8HCYfBbMMedXZMfaETk5boUgijRpg/view?usp=sharing', '_blank')}>
+              <Download className="w-7 h-7 mr-3" />
+              Download Resume
+            </Button>
           </div>
         </div>
       </section>

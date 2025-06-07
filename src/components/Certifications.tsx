@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Award, Calendar, ExternalLink } from 'lucide-react';
 
@@ -122,14 +121,7 @@ const Certifications: React.FC = () => {
                   src={cert.image} 
                   alt={cert.name}
                   className="w-full h-64 object-contain group-hover:scale-110 transition-transform duration-500 bg-white"
-                  onError={(e) => {
-                    e.currentTarget.style.display = 'none';
-                    e.currentTarget.nextElementSibling?.classList.remove('hidden');
-                  }}
                 />
-                <div className={`w-full h-64 rounded-lg bg-gradient-to-r ${cert.color} flex items-center justify-center hidden`}>
-                  <Award className="w-16 h-16 text-white" />
-                </div>
               </div>
 
               <h3 className="text-lg font-bold text-white mb-2 group-hover:text-neon-green transition-colors leading-tight font-playfair">

@@ -51,7 +51,7 @@ const Experience: React.FC = () => {
                     <div className={`p-2 rounded-lg bg-gradient-to-r ${exp.color} mr-3`}>
                       <Briefcase className="w-5 h-5 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-white font-montserrat">
+                    <h3 className="text-xl font-bold text-neon-pink font-montserrat">
                       {exp.title}
                     </h3>
                   </div>

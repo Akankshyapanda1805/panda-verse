@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ExternalLink, Github, Calendar, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -85,11 +84,11 @@ const Projects: React.FC = () => {
             >
               {/* Header */}
               <div className="mb-6">
-                <h3 className="text-xl font-bold text-white mb-2 font-montserrat">
+                <h3 className="text-xl font-bold text-neon-cyan mb-2 font-montserrat">
                   {project.title}
                 </h3>
                 {project.subtitle && (
-                  <h4 className="text-lg text-neon-cyan font-semibold mb-3 font-montserrat">
+                  <h4 className="text-lg text-neon-purple font-semibold mb-3 font-montserrat">
                     {project.subtitle}
                   </h4>
                 )}
