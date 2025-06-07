@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Download, Code } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -146,7 +147,7 @@ const Hero: React.FC = () => {
                     <div className="w-full h-full rounded-xl overflow-hidden bg-black relative">
                       <div className="absolute inset-0 bg-gradient-to-br from-neon-purple/20 via-transparent to-neon-cyan/20 animate-pulse"></div>
                       <img 
-                        src="https://i.ibb.co/PZ3wTJ5/profile-image.jpg" 
+                        src="/lovable-uploads/dfa72ac1-5a6b-4e79-a137-94456c1cc20d.png" 
                         alt="Akankshya Panda" 
                         className="w-full h-full object-cover rounded-xl relative z-10"
                         onError={(e) => {
